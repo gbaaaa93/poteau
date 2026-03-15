@@ -309,7 +309,7 @@
 
                 if (timeTitle) timeTitle.innerText = "Samedi 20:30";
                 if (locationText) locationText.innerHTML = `<span class="material-symbols-outlined text-sm">location_on</span> ${matchDetails.name}`;
-                if (regCount) regCount.innerText = `Inscriptions (${matchDetails.type === 'Football' ? '7/10' : '3/4'})`;
+                if (regCount) regCount.innerText = `Inscriptions (${matchDetails.type === 'Football' ? '9/10' : '3/4'})`;
                 if (typeTag) typeTag.innerText = matchDetails.type === 'Football' ? '5V5' : '2V2';
 
                 // Update Side Stats
@@ -347,40 +347,71 @@
                 container.style.borderColor = "#03a611";
                 container.innerHTML = `
                     <div class="absolute inset-x-8 inset-y-0 border-x-2 border-white/20"></div>
-                    <div class="absolute top-[45%] left-0 right-0 h-0.5 bg-white/20"></div>
-                    <div class="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 border-2 border-white/20 rounded-full"></div>
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-20 border-b-2 border-x-2 border-white/20"></div>
-                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-20 border-t-2 border-x-2 border-white/20 font-black"></div>
-                    <!-- Spots -->
-                    <div class="absolute top-[12%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-                        <div class="size-14 rounded-full border-4 border-primary bg-background-dark p-0.5 shadow-xl">
+                    <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-white/20"></div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 border-2 border-white/20 rounded-full"></div>
+                    
+                    <!-- Team 1 (Top) -->
+                    <div class="absolute top-[8%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g" class="w-full h-full object-cover rounded-full">
                         </div>
-                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[8px] text-white uppercase italic">Attaquant</span>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Gardien</span>
                     </div>
-                    <div id="spot-m-l" class="player-spot absolute top-[35%] left-[20%] flex flex-col items-center gap-2 cursor-pointer group pulse-effect" onclick="openPaymentFlow('Milieu Gauche', 'spot-m-l')">
-                        <div class="size-14 rounded-full border-2 border-dashed border-white/30 bg-white/5 flex items-center justify-center backdrop-blur-sm group-hover:border-primary">
-                            <span class="material-symbols-outlined text-white text-2xl group-hover:text-primary">add</span>
-                        </div>
-                        <span class="px-2 py-0.5 bg-black/40 rounded font-bold text-[8px] text-white/50 uppercase italic">LIBRE</span>
-                    </div>
-                    <div class="absolute top-[35%] right-[20%] flex flex-col items-center gap-2">
-                        <div class="size-14 rounded-full border-4 border-primary bg-background-dark p-0.5 shadow-xl">
+                    <div class="absolute top-[22%] left-[20%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA" class="w-full h-full object-cover rounded-full">
                         </div>
-                        <span class="px-2 py-0.5 bg-primary rounded font-black text-[8px] text-black uppercase italic">Thomas L.</span>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Julien S.</span>
                     </div>
-                    <div id="spot-def" class="player-spot absolute top-[62%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group pulse-effect" onclick="openPaymentFlow('Défenseur', 'spot-def')">
-                        <div class="size-14 rounded-full border-2 border-dashed border-white/30 bg-white/5 flex items-center justify-center backdrop-blur-sm group-hover:border-primary">
-                            <span class="material-symbols-outlined text-white text-2xl group-hover:text-primary">add</span>
+                    <div class="absolute top-[22%] right-[20%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrgHbcDJ-xMdGVUbLkAT28g6uffvBLB-q5PLvaRv7rH0ZNmp_gmbJBaq42gBYJvq_refehzyhZrFBTz6RK_49P_ekooF5Tu_uuBmCXA543nabFWHZI_MUIIj8RZmBCU4qC83kuCVsmF05YhtIUs4cJM-NagNHawD7yz3AAh4u8wxeaeutrnW4lTVU0K5-2SoM-xO9ZkAOD16Atnyn0xMlSOy_E_tQLaLP9JbI43rFs1qwk0g7zTGXAtozBtM-0HeHdHDkV-7KJyA" class="w-full h-full object-cover rounded-full">
                         </div>
-                        <span class="px-2 py-0.5 bg-black/40 rounded font-bold text-[8px] text-white/50 uppercase italic">LIBRE</span>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Karim B.</span>
                     </div>
-                    <div class="absolute bottom-[8%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-                        <div class="size-14 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                    <div class="absolute top-[38%] left-[30%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g" class="w-full h-full object-cover rounded-full">
                         </div>
-                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[8px] text-white uppercase italic">Gardien</span>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Lucas R.</span>
+                    </div>
+                    <div class="absolute top-[38%] right-[30%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrgHbcDJ-xMdGVUbLkAT28g6uffvBLB-q5PLvaRv7rH0ZNmp_gmbJBaq42gBYJvq_refehzyhZrFBTz6RK_49P_ekooF5Tu_uuBmCXA543nabFWHZI_MUIIj8RZmBCU4qC83kuCVsmF05YhtIUs4cJM-NagNHawD7yz3AAh4u8wxeaeutrnW4lTVU0K5-2SoM-xO9ZkAOD16Atnyn0xMlSOy_E_tQLaLP9JbI43rFs1qwk0g7zTGXAtozBtM-0HeHdHDkV-7KJyA" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Alex M.</span>
+                    </div>
+
+                    <!-- Team 2 (Bottom) -->
+                    <div class="absolute bottom-[38%] left-[30%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Samir B.</span>
+                    </div>
+                    <div class="absolute bottom-[38%] right-[30%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-primary bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <span class="px-2 py-0.5 bg-primary rounded font-black text-[7px] text-black uppercase italic">Thomas L.</span>
+                    </div>
+                    <div id="spot-m-l" class="player-spot absolute bottom-[22%] left-[20%] flex flex-col items-center gap-1 cursor-pointer group pulse-effect scale-90" onclick="openPaymentFlow('Milieu Gauche', 'spot-m-l')">
+                        <div class="size-12 rounded-full border-2 border-dashed border-white/30 bg-white/5 flex items-center justify-center backdrop-blur-sm group-hover:border-primary">
+                            <span class="material-symbols-outlined text-white text-xl group-hover:text-primary">add</span>
+                        </div>
+                        <span class="px-2 py-0.5 bg-black/40 rounded font-bold text-[7px] text-white/50 uppercase italic group-hover:text-primary">LIBRE</span>
+                    </div>
+                    <div class="absolute bottom-[22%] right-[20%] flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Yassine K.</span>
+                    </div>
+                    <div class="absolute bottom-[8%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 scale-90">
+                        <div class="size-12 rounded-full border-4 border-white/20 bg-background-dark p-0.5 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <span class="px-2 py-0.5 bg-black/60 rounded font-bold text-[7px] text-white uppercase italic">Gardien</span>
                     </div>
                 `;
             }

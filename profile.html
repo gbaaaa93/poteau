@@ -71,9 +71,9 @@
         <p class="text-[11px] font-bold text-slate-500 dark:text-primary/60 uppercase tracking-tighter">Note des joueurs</p>
         <div class="flex items-center gap-2">
             <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                <div class="bg-primary h-full" style="width: 96%"></div>
+                <div id="rating-bar" class="bg-primary h-full" style="width: 80%"></div>
             </div>
-            <p class="text-sm font-bold text-primary">4.8</p>
+            <p id="rating-value" class="text-sm font-bold text-primary">0.0</p>
         </div>
     </div>
     <div class="flex items-center justify-between gap-4">
@@ -148,44 +148,12 @@
 <!-- Matchs en commun Section -->
 <div class="mt-4">
 <div class="flex items-center justify-between px-4 pb-4">
-<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Matchs en commun</h3>
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Derniers Avis</h3>
 <span class="text-primary text-sm font-semibold">Voir tout</span>
 </div>
-<div class="flex flex-col gap-3 px-4">
-<!-- Match Card 1 -->
-<div class="flex gap-4 p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
-<div class="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-slate-300 dark:bg-slate-800">
-<div class="w-full h-full bg-gradient-to-br from-primary/40 to-primary/10" data-alt="Abstract green football field pattern"></div>
-</div>
-<div class="flex flex-col justify-center">
-<p class="text-slate-900 dark:text-slate-100 font-bold">Five Paris 18 - 5v5</p>
-<div class="flex items-center gap-1.5 mt-0.5">
-<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">calendar_today</span>
-<p class="text-xs text-slate-500 dark:text-primary/60">12 Octobre • 19:00</p>
-</div>
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">location_on</span>
-<p class="text-xs text-slate-500 dark:text-primary/60">Paris, France</p>
-</div>
-</div>
-</div>
-<!-- Match Card 2 -->
-<div class="flex gap-4 p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
-<div class="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-slate-300 dark:bg-slate-800">
-<div class="w-full h-full bg-gradient-to-br from-primary/30 to-background-dark" data-alt="Abstract geometric dark sports pattern"></div>
-</div>
-<div class="flex flex-col justify-center">
-<p class="text-slate-900 dark:text-slate-100 font-bold">UrbanSoccer - Padel</p>
-<div class="flex items-center gap-1.5 mt-0.5">
-<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">calendar_today</span>
-<p class="text-xs text-slate-500 dark:text-primary/60">05 Octobre • 18:30</p>
-</div>
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">location_on</span>
-<p class="text-xs text-slate-500 dark:text-primary/60">Aubervilliers, France</p>
-</div>
-</div>
-</div>
+<div id="reviews-container" class="flex flex-col gap-3 px-4">
+    <!-- Avis injectés dynamiquement -->
+    <p class="text-xs text-slate-500 italic text-center py-4">Aucun avis pour le moment.</p>
 </div>
 </div>
 <!-- Action Buttons -->
@@ -231,4 +199,35 @@
         </a>
     </nav>
 </div>
+<script>
+    function loadPlayerData() {
+        const playerName = document.querySelector('h1').innerText;
+        const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
+        const playerData = allReviews[playerName];
+
+        if (playerData) {
+            // Update Rating
+            if (playerData.ratings.length > 0) {
+                const avg = playerData.ratings.reduce((a, b) => a + b, 0) / playerData.ratings.length;
+                document.getElementById('rating-value').innerText = avg.toFixed(1);
+                document.getElementById('rating-bar').style.width = (avg * 10) + '%';
+            }
+
+            // Update Comments
+            if (playerData.comments.length > 0) {
+                const container = document.getElementById('reviews-container');
+                container.innerHTML = playerData.comments.reverse().map(comment => `
+                    <div class="p-4 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold text-primary">Par ${comment.author}</span>
+                            <span class="text-[10px] text-slate-500">${comment.date}</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">"${comment.text}"</p>
+                    </div>
+                `).join('');
+            }
+        }
+    }
+    window.onload = loadPlayerData;
+</script>
 </body></html>

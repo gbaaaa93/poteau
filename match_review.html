@@ -128,11 +128,19 @@
         }
 
         const players = [
-            { name: "Thomas L.", pos: "Attaquant", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg", x: 50, y: 15 },
-            { name: "Karim B.", pos: "Milieu Droit", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g", x: 75, y: 45 },
-            { name: "Julien S.", pos: "Défenseur", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA", x: 50, y: 70 },
-            { name: "Moi", pos: "Milieu Gauche", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg", x: 25, y: 45 },
-            { name: "Hugo G.", pos: "Gardien", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBjMmHwTkgeXaoYw-EM5Twnpuoa6JScPj5n7LWnVjqkP_g1KRJNf3KdLf-Lzowuxnsua6HTYgSFa5X3PEXasI8EQsRFepYKw6yRXeDLwwE48qh_3WfcNncVAtW-tndRKDfjwHcMYMYTYFXt7LU1CZB0kKgGSDCooIHGB9WHjr7Hpeu4ySHhaDzF4G5NUhm2PalqCZK8GzxXr8FGKwBf6tH2poU6LsFCoCXd-DZOSY6TFLRcWbCMr8nlf8di3mbbY8S8sBX89qKNnw", x: 50, y: 90 }
+            // Team 1 (Top)
+            { id: 1, name: "Gardien A", pos: "Gardien", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g", x: 50, y: 10 },
+            { id: 2, name: "Julien S.", pos: "Défenseur", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA", x: 30, y: 25 },
+            { id: 3, name: "Karim B.", pos: "Défenseur", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDrgHbcDJ-xMdGVUbLkAT28g6uffvBLB-q5PLvaRv7rH0ZNmp_gmbJBaq42gBYJvq_refehzyhZrFBTz6RK_49P_ekooF5Tu_uuBmCXA543nabFWHZI_MUIIj8RZmBCU4qC83kuCVsmF05YhtIUs4cJM-NagNHawD7yz3AAh4u8wxeaeutrnW4lTVU0K5-2SoM-xO9ZkAOD16Atnyn0xMlSOy_E_tQLaLP9JbI43rFs1qwk0g7zTGXAtozBtM-0HeHdHDkV-7KJyA", x: 70, y: 25 },
+            { id: 4, name: "Lucas R.", pos: "Attaquant", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g", x: 35, y: 40 },
+            { id: 5, name: "Alex M.", pos: "Attaquant", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDrgHbcDJ-xMdGVUbLkAT28g6uffvBLB-q5PLvaRv7rH0ZNmp_gmbJBaq42gBYJvq_refehzyhZrFBTz6RK_49P_ekooF5Tu_uuBmCXA543nabFWHZI_MUIIj8RZmBCU4qC83kuCVsmF05YhtIUs4cJM-NagNHawD7yz3AAh4u8wxeaeutrnW4lTVU0K5-2SoM-xO9ZkAOD16Atnyn0xMlSOy_E_tQLaLP9JbI43rFs1qwk0g7zTGXAtozBtM-0HeHdHDkV-7KJyA", x: 65, y: 40 },
+            
+            // Team 2 (Bottom)
+            { id: 6, name: "Samir B.", pos: "Attaquant", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA", x: 35, y: 60 },
+            { id: 7, name: "Thomas L.", pos: "Milieu", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA", x: 65, y: 60 },
+            { id: 8, name: "Moi", pos: "Milieu Gauche", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg", x: 30, y: 75 },
+            { id: 9, name: "Yassine K.", pos: "Défenseur", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g", x: 70, y: 75 },
+            { id: 10, name: "Gardien B", pos: "Gardien", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBjMmHwTkgeXaoYw-EM5Twnpuoa6JScPj5n7LWnVjqkP_g1KRJNf3KdLf-Lzowuxnsua6HTYgSFa5X3PEXasI8EQsRFepYKw6yRXeDLwwE48qh_3WfcNncVAtW-tndRKDfjwHcMYMYTYFXt7LU1CZB0kKgGSDCooIHGB9WHjr7Hpeu4ySHhaDzF4G5NUhm2PalqCZK8GzxXr8FGKwBf6tH2poU6LsFCoCXd-DZOSY6TFLRcWbCMr8nlf8di3mbbY8S8sBX89qKNnw", x: 50, y: 90 }
         ];
 
         window.onload = () => {
@@ -160,6 +168,8 @@
                 <div class="absolute inset-0 border-4 border-white/10 m-4"></div>
                 <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-white/10"></div>
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-32 border-2 border-white/10 rounded-full"></div>
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-48 h-20 border-b-2 border-x-2 border-white/10"></div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-48 h-20 border-t-2 border-x-2 border-white/10"></div>
                 ${players.map(p => createPlayerHTML(p)).join('')}
             `;
         }
@@ -181,7 +191,7 @@
             return `
                 <div class="player-spot absolute flex flex-col items-center gap-1 cursor-pointer" 
                      style="left: ${p.x}%; top: ${p.y}%; transform: translate(-50%, -50%)"
-                     onclick="openRatingModal('${p.name}', '${p.pos}', '${p.img}')">
+                     onclick="openRatingModal('${p.name}', '${p.pos}', '${p.img}', ${p.id})">
                     <div class="size-14 rounded-full border-2 border-primary bg-background-dark p-0.5 shadow-xl hover:scale-110 transition-transform bg-[#0a0a0b]">
                         <img src="${p.img}" class="w-full h-full object-cover rounded-full">
                     </div>
@@ -190,9 +200,13 @@
             `;
         }
 
-        function openRatingModal(name, pos, img) {
-            if (name === "Moi") return; // On ne se note pas soi-même
+        let currentRating = 0;
+        let currentPlayerId = null;
 
+        function openRatingModal(name, pos, img, id) {
+            if (name === "Moi") return;
+
+            currentPlayerId = id;
             const modal = document.getElementById('rating-modal');
             const content = modal.querySelector('div');
             document.getElementById('modal-player-name').innerText = name;
@@ -220,6 +234,7 @@
         }
 
         function selectRating(n) {
+            currentRating = n;
             document.querySelectorAll('.rating-btn').forEach(b => {
                 const val = parseInt(b.innerText);
                 if (val === n) b.classList.add('active');
@@ -228,13 +243,34 @@
         }
 
         function submitRating() {
-            const activeRating = document.querySelector('.rating-btn.active');
-            if (!activeRating) {
+            if (currentRating === 0) {
                 alert("Choisis une note d'abord !");
                 return;
             }
-            alert("Note enregistrée ! Merci pour ton feedback.");
+
+            const comment = document.querySelector('textarea').value;
+            const playerName = document.getElementById('modal-player-name').innerText;
+            
+            // Get existing reviews or init
+            const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
+            if (!allReviews[playerName]) allReviews[playerName] = { ratings: [], comments: [] };
+            
+            allReviews[playerName].ratings.push(currentRating);
+            if (comment.trim()) {
+                allReviews[playerName].comments.push({
+                    text: comment,
+                    date: new Date().toLocaleDateString('fr-FR'),
+                    author: "Moi"
+                });
+            }
+            
+            localStorage.setItem('poteau_reviews', JSON.stringify(allReviews));
+            
+            // Show success and close
+            alert(`Note de ${currentRating}/10 enregistrée pour ${playerName} !`);
             closeRatingModal();
+            document.querySelector('textarea').value = '';
+            currentRating = 0;
         }
     </script>
 </body>
