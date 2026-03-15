@@ -49,20 +49,20 @@
 <div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
 <header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10">
 <div class="flex items-center p-4 justify-between max-w-full mx-auto w-full">
-<h1 class="text-xl font-bold tracking-tight">Mes Matchs</h1>
+<h1 class="text-xl font-bold tracking-tight">Mes Activités</h1>
 <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/10 transition-colors">
 <span class="material-symbols-outlined text-primary">calendar_month</span>
 </button>
 </div>
 <nav class="flex px-4 gap-6 max-w-full mx-auto w-full overflow-x-auto hide-scrollbar">
-<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2" href="#">
-<span class="text-sm font-bold whitespace-nowrap">À venir</span>
+<a id="tab-upcoming" class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2 cursor-pointer" onclick="switchDashboardTab('upcoming')">
+    <span class="text-sm font-bold whitespace-nowrap">À venir</span>
+</a>
+<a id="tab-past" class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 cursor-pointer" onclick="switchDashboardTab('past')">
+    <span class="text-sm font-medium whitespace-nowrap">Passés</span>
 </a>
 <a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2" href="#">
-<span class="text-sm font-medium whitespace-nowrap">Passés</span>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2" href="#">
-<span class="text-sm font-medium whitespace-nowrap">Organisés</span>
+    <span class="text-sm font-medium whitespace-nowrap">Organisés</span>
 </a>
 </nav>
 </header>
@@ -141,28 +141,74 @@
 </div>
 </section>
 </main>
-<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-background-dark rounded-full shadow-2xl flex items-center justify-center z-30 transform hover:scale-110 active:scale-95 transition-transform">
-<span class="material-symbols-outlined text-3xl font-bold">add</span>
-</button>
-<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] left-0 right-0 z-40 bg-background-light dark:bg-background-dark border-t border-primary/10">
-<div class="flex max-w-full mx-auto items-center justify-around px-4 pb-6 pt-2">
-<a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
-<span class="material-symbols-outlined">home</span>
-<span class="text-[10px] font-medium leading-none">Accueil</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-primary" href="#">
-<span class="material-symbols-outlined fill-1">calendar_month</span>
-<span class="text-[10px] font-bold leading-none">Mes Matchs</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
-<span class="material-symbols-outlined">explore</span>
-<span class="text-[10px] font-medium leading-none">Découvrir</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
-<span class="material-symbols-outlined">person</span>
-<span class="text-[10px] font-medium leading-none">Profil</span>
-</a>
-</div>
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-[10px] font-medium">Accueil</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 text-primary" href="dashboard.html">
+        <span class="material-symbols-outlined fill-1">explore</span>
+        <span class="text-[10px] font-medium">Matchs</span>
+    </a>
+    <div class="relative -top-8">
+        <a href="create_match.html" class="w-14 h-14 bg-primary text-black rounded-full shadow-lg shadow-primary/40 flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+            <span class="material-symbols-outlined text-2xl font-bold">add</span>
+        </a>
+    </div>
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="text-[10px] font-medium">Alertes</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-[10px] font-medium">Profil</span>
+    </a>
+</nav>
 </footer>
 </div>
-</body></html>
+    <script>
+        const pastMatches = [
+            { id: 101, name: "Le Five Bobigny", type: "Football", date: "Hier 18h00", score: "8 - 5", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDkBVJGvgI63nh90yHs4VcMcBN6kCCTB72unhm_EuIstVN9PQW0VjZd4wWAzvOXfsp7XNVQXkdBNR2FqpkUU6PPMjaiYU7AIljsCPeinyJnUzK-HLml70R-O54BsylMpHxN5LoV7YFQF8VkyVvLT8y-fTzEeGc5yKGcyLiY6wEbRklcUGHFw7eqUl7V5eJOBg2_z-Iu4RT4gACY_kdYp-iuLJOIMNLjANZXhStXfPsDQFQu9eaqPMNeq8KLOOpEvMzMeuwTxRXr2kQ" },
+            { id: 102, name: "Padel Club 78", type: "Padel", date: "Lun. 20h00", score: "6-4 6-2", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAC_nDBJjq2tl59FPp-HHVkswMmASyq-KQr2Ff9UXjaXAK25CcoOe22JqMGaM3HLLVkj8yQ__0-vrMSYBUQ3aco_WVjLPnuVMub_KKQxMrcodEbGsDExhOjKzCoiwaRNpURELloQ7GoN2xxVsti638gIGMlvKvgbyFye7IuS0HuX9leKb7apUyGiEGyLXN1BnBQAQNKZL65w9nmDz3FpdVvHrkAtAsX4YokxK016POUOQ6iVXWRtl3eJc2eD5Xk0pYH-UfgQDEVw" }
+        ];
+
+        function switchDashboardTab(tab) {
+            const upcomingList = document.querySelector('main');
+            const tabUpcoming = document.getElementById('tab-upcoming');
+            const tabPast = document.getElementById('tab-past');
+
+            if (tab === 'past') {
+                tabPast.className = "flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2 cursor-pointer";
+                tabUpcoming.className = "flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 cursor-pointer";
+                
+                upcomingList.innerHTML = `
+                    <section class="space-y-4">
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Matchs Terminés</h2>
+                        ${pastMatches.map(match => `
+                            <div class="group relative flex flex-col bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm transition-all active:scale-[0.98]">
+                                <div class="relative h-32 w-full overflow-hidden">
+                                    <div class="absolute inset-0 bg-cover bg-center opacity-60 grayscale" style="background-image: url('${match.img}')"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <div class="absolute top-3 left-3 bg-slate-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">TERMINÉ</div>
+                                    <div class="absolute bottom-3 left-4">
+                                        <p class="text-primary font-black text-xl italic">${match.score}</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 dark:text-slate-100">${match.type} • ${match.name}</h3>
+                                        <p class="text-xs text-slate-500">${match.date}</p>
+                                    </div>
+                                    <a href="match_review.html?type=${match.type}&id=${match.id}" class="bg-primary text-black px-4 py-2 rounded-lg text-xs font-bold shadow-md shadow-primary/20">NOTER JOUEURS</a>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </section>
+                `;
+            } else {
+                location.reload(); // Simple way to restore the complex static layout
+            }
+        }
+    </script>
+</body>
+</html>

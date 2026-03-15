@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Noter les Joueurs - Poteau Bis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body { font-family: 'Lexend', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .player-spot { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .rating-btn.active { background-color: #22c55e; color: black; border-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+    </style>
+</head>
+<body class="bg-[#0a0a0b] text-white antialiased">
+    <div class="relative mx-auto min-h-screen max-w-[480px] bg-[#0a0a0b] flex flex-col shadow-2xl pb-24">
+        
+        <!-- Header -->
+        <header class="p-4 flex items-center justify-between">
+            <button onclick="history.back()" class="flex size-10 items-center justify-center rounded-full glass hover:bg-white/10 transition-colors">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <h1 class="text-sm font-black uppercase tracking-widest text-slate-500">Noter les Joueurs</h1>
+            <div class="size-10"></div>
+        </header>
+
+        <main class="flex-1 p-4 space-y-6">
+            <!-- Match Recap -->
+            <div class="glass rounded-2xl p-4 flex items-center gap-4">
+                <div class="size-16 rounded-xl bg-primary/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-3xl" id="match-icon">sports_soccer</span>
+                </div>
+                <div>
+                    <h2 id="match-name" class="font-bold text-lg">Five Paris 13</h2>
+                    <p class="text-xs text-slate-500">Match fini • Score: <span class="text-primary font-black" id="match-score">8 - 5</span></p>
+                </div>
+            </div>
+
+            <!-- tactical Field -->
+            <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden border-2 border-white/5 shadow-2xl transition-colors duration-500" id="tactical-field">
+                <!-- Field content will be injected by JS -->
+            </div>
+
+            <p class="text-center text-xs text-slate-500 italic">Touchez un joueur pour le noter ou voir son profil</p>
+        </main>
+
+        <!-- Rating Modal (Hidden by default) -->
+        <div id="rating-modal" class="fixed inset-0 z-[200] flex items-end justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="w-full max-w-[480px] bg-[#121214] rounded-t-[32px] p-6 pb-12 translate-y-full transition-transform duration-300">
+                <div class="w-12 h-1.5 bg-white/10 rounded-full mx-auto mb-8"></div>
+                
+                <div class="flex items-center gap-4 mb-8">
+                    <img id="modal-player-img" src="" class="size-20 rounded-2xl object-cover border-2 border-primary">
+                    <div>
+                        <h3 id="modal-player-name" class="text-2xl font-black italic uppercase">Thomas L.</h3>
+                        <p id="modal-player-pos" class="text-primary text-xs font-bold uppercase tracking-widest">Milieu Gauche</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Note sur 10</label>
+                        <div class="grid grid-cols-5 gap-2">
+                            <button onclick="selectRating(1)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">1</button>
+                            <button onclick="selectRating(2)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">2</button>
+                            <button onclick="selectRating(3)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">4</button>
+                            <button onclick="selectRating(4)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">4</button>
+                            <button onclick="selectRating(5)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">5</button>
+                            <button onclick="selectRating(6)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">6</button>
+                            <button onclick="selectRating(7)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">7</button>
+                            <button onclick="selectRating(8)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">8</button>
+                            <button onclick="selectRating(9)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">9</button>
+                            <button onclick="selectRating(10)" class="rating-btn py-3 rounded-xl glass text-sm font-bold border-white/10 hover:border-primary transition-all">10</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Ta critique</label>
+                        <textarea placeholder="Super match, vision de jeu incroyable..." class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm focus:outline-none focus:border-primary h-24 resize-none text-white"></textarea>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button onclick="closeRatingModal()" class="flex-1 py-4 rounded-2xl glass font-bold text-sm">Annuler</button>
+                        <button onclick="submitRating()" class="flex-[2] py-4 rounded-2xl bg-primary text-black font-black text-sm shadow-xl shadow-primary/20">Valider la Note</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light dark:bg-[#0a0a0b] border-t border-slate-200 dark:border-white/5 px-6 py-3 flex justify-between items-center z-50">
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Accueil</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="dashboard.html">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-[10px] font-medium">Matchs</span>
+            </a>
+            <div class="relative -top-8">
+                <a href="create_match.html" class="w-14 h-14 bg-primary text-black rounded-full shadow-lg shadow-primary/40 flex items-center justify-center border-4 border-white dark:border-[#0a0a0b]">
+                    <span class="material-symbols-outlined text-2xl font-bold">add</span>
+                </a>
+            </div>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="text-[10px] font-medium">Alertes</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-[10px] font-medium">Profil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#22c55e',
+                    }
+                }
+            }
+        }
+
+        const players = [
+            { name: "Thomas L.", pos: "Attaquant", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg", x: 50, y: 15 },
+            { name: "Karim B.", pos: "Milieu Droit", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpQsQymDQ1SjAD8ByEG1yEduYB7PucBBcB4xciuyyzn-Gi5pARQ044viO9up1Y9iWg4StjKzpGOCqGaeNkA1eL5LR7cq7Yq2_1cvvQEx_FHaF6586s7Skxsu7JAdfjPLD5jdpczJ9JSSYI9-RpCQuL-R6Z4Zh9Bpbo9ZEMLBMt8fcqD012cNDCYrXkrNasO5bMHdbxi9j9P_cOVbdlmM8l0yQ8isw50_CzVVz9CmrhjDqx1xU6RxSM2nVHYxYsbFY6NUaZUc785g", x: 75, y: 45 },
+            { name: "Julien S.", pos: "Défenseur", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwUUVSbYaltBFHB0RinTwIb1mHobHS3t1aFejLZW7KSTwiQAOxHqTmVxhhdmsTNUEI0_UHaDbPWBhPOr9y1l6SakCMkvC2H307S91FtDJ5SqvdxNdIVU4ywSnORHQKxdONdUkJrUX0Xn_o29ELszE_i3ZuI40HbEMddrFpFr9mu-EXU53aH8oRP6ykfUJi_Ce9j84Ij2AFu6c8SA4eFdaL0ug5xywxhkgQFxeew4gxRY9gdnNtUpf4Gfedwx9v00mCqa2UWnM0LA", x: 50, y: 70 },
+            { name: "Moi", pos: "Milieu Gauche", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg", x: 25, y: 45 },
+            { name: "Hugo G.", pos: "Gardien", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBjMmHwTkgeXaoYw-EM5Twnpuoa6JScPj5n7LWnVjqkP_g1KRJNf3KdLf-Lzowuxnsua6HTYgSFa5X3PEXasI8EQsRFepYKw6yRXeDLwwE48qh_3WfcNncVAtW-tndRKDfjwHcMYMYTYFXt7LU1CZB0kKgGSDCooIHGB9WHjr7Hpeu4ySHhaDzF4G5NUhm2PalqCZK8GzxXr8FGKwBf6tH2poU6LsFCoCXd-DZOSY6TFLRcWbCMr8nlf8di3mbbY8S8sBX89qKNnw", x: 50, y: 90 }
+        ];
+
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'Football';
+            const field = document.getElementById('tactical-field');
+            const matchName = document.getElementById('match-name');
+            const matchIcon = document.getElementById('match-icon');
+            const matchScore = document.getElementById('match-score');
+
+            if (type === 'Padel') {
+                field.style.backgroundColor = "#1e40af";
+                matchName.innerText = "Padel Club 78";
+                matchIcon.innerText = "sports_tennis";
+                matchScore.innerText = "6-4 6-2";
+                renderPadelLayout(field);
+            } else {
+                field.style.backgroundColor = "#065f46";
+                renderFootballLayout(field);
+            }
+        };
+
+        function renderFootballLayout(field) {
+            field.innerHTML = `
+                <div class="absolute inset-0 border-4 border-white/10 m-4"></div>
+                <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-white/10"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-32 border-2 border-white/10 rounded-full"></div>
+                ${players.map(p => createPlayerHTML(p)).join('')}
+            `;
+        }
+
+        function renderPadelLayout(field) {
+            field.innerHTML = `
+                <div class="absolute inset-x-8 inset-y-4 border-2 border-white/20"></div>
+                <div class="absolute top-1/2 left-8 right-8 h-0.5 bg-white/20"></div>
+                <div class="absolute top-[20%] left-8 right-8 h-0.5 bg-white/10"></div>
+                <div class="absolute top-[80%] left-8 right-8 h-0.5 bg-white/10"></div>
+                ${players.slice(0, 4).map((p, i) => {
+                    const pos = [{x:35, y:30}, {x:65, y:30}, {x:35, y:70}, {x:65, y:70}][i];
+                    return createPlayerHTML({...p, ...pos});
+                }).join('')}
+            `;
+        }
+
+        function createPlayerHTML(p) {
+            return `
+                <div class="player-spot absolute flex flex-col items-center gap-1 cursor-pointer" 
+                     style="left: ${p.x}%; top: ${p.y}%; transform: translate(-50%, -50%)"
+                     onclick="openRatingModal('${p.name}', '${p.pos}', '${p.img}')">
+                    <div class="size-14 rounded-full border-2 border-primary bg-background-dark p-0.5 shadow-xl hover:scale-110 transition-transform bg-[#0a0a0b]">
+                        <img src="${p.img}" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <span class="px-2 py-0.5 bg-black/60 rounded text-[9px] font-bold text-white uppercase italic whitespace-nowrap">${p.name}</span>
+                </div>
+            `;
+        }
+
+        function openRatingModal(name, pos, img) {
+            if (name === "Moi") return; // On ne se note pas soi-même
+
+            const modal = document.getElementById('rating-modal');
+            const content = modal.querySelector('div');
+            document.getElementById('modal-player-name').innerText = name;
+            document.getElementById('modal-player-pos').innerText = pos;
+            document.getElementById('modal-player-img').src = img;
+            
+            modal.classList.remove('pointer-events-none');
+            modal.classList.add('opacity-100');
+            setTimeout(() => {
+                content.classList.remove('translate-y-full');
+            }, 50);
+        }
+
+        function closeRatingModal() {
+            const modal = document.getElementById('rating-modal');
+            const content = modal.querySelector('div');
+            content.classList.add('translate-y-full');
+            setTimeout(() => {
+                modal.classList.add('opacity-0');
+                modal.classList.add('pointer-events-none');
+            }, 300);
+            
+            // Clear rating
+            document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+        }
+
+        function selectRating(n) {
+            document.querySelectorAll('.rating-btn').forEach(b => {
+                const val = parseInt(b.innerText);
+                if (val === n) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+        }
+
+        function submitRating() {
+            const activeRating = document.querySelector('.rating-btn.active');
+            if (!activeRating) {
+                alert("Choisis une note d'abord !");
+                return;
+            }
+            alert("Note enregistrée ! Merci pour ton feedback.");
+            closeRatingModal();
+        }
+    </script>
+</body>
+</html>
