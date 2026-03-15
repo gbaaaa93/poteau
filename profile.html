@@ -133,6 +133,28 @@
 <p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Niveau</p>
 </div>
 </div>
+<!-- Action Buttons -->
+<div id="self-actions" class="px-4 mt-6 grid grid-cols-2 gap-3 hidden">
+    <button class="flex items-center justify-center gap-2 py-3 bg-primary rounded-xl font-bold text-black shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined text-xl">edit</span>
+        Modifier
+    </button>
+    <button class="flex items-center justify-center gap-2 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
+        <span class="material-symbols-outlined text-xl">settings</span>
+        Paramètres
+    </button>
+</div>
+
+<div id="other-actions" class="px-4 mt-6 grid grid-cols-2 gap-3">
+    <button class="flex items-center justify-center gap-2 py-3 bg-primary rounded-xl font-bold text-black shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined text-xl">person_add</span>
+        Ajouter
+    </button>
+    <button class="flex items-center justify-center gap-2 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
+        <span class="material-symbols-outlined text-xl">chat_bubble</span>
+        Message
+    </button>
+</div>
 <!-- Sports Badges -->
 <div class="flex gap-2 p-4 overflow-x-auto no-scrollbar">
 <div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
@@ -201,9 +223,19 @@
 </div>
 <script>
     function loadPlayerData() {
-        const playerName = document.querySelector('h1').innerText;
+        const playerName = document.querySelector('h1').innerText.trim();
         const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
         const playerData = allReviews[playerName];
+
+        // Check if it's my own profile (Mock check based on name)
+        const isMe = playerName === "Thomas L."; 
+        if (isMe) {
+            document.getElementById('self-actions').classList.remove('hidden');
+            document.getElementById('other-actions').classList.add('hidden');
+        } else {
+            document.getElementById('self-actions').classList.add('hidden');
+            document.getElementById('other-actions').classList.remove('hidden');
+        }
 
         if (playerData) {
             // Update Rating
