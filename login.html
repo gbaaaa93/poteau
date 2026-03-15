@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poteau - Connexion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #94FB2D;
+            --background-dark: #0A0A0B;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--background-dark);
+        }
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-100 overflow-hidden">
+    <div class="p-8 mt-12 flex flex-col items-center">
+        <!-- Logo -->
+        <div class="size-20 bg-primary rounded-2xl flex items-center justify-center rotate-12 shadow-2xl shadow-primary/20 mb-8">
+            <span class="material-symbols-outlined text-black text-5xl font-black -rotate-12">sports_soccer</span>
+        </div>
+        
+        <h1 class="text-4xl font-extrabold tracking-tighter mb-2">POTEAU</h1>
+        <p class="text-slate-500 text-sm font-medium mb-12">Connecte-toi pour jouer</p>
+
+        <!-- Auth Form -->
+        <div class="w-full max-w-sm">
+            <div id="login-section" class="space-y-4">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl font-light">mail</span>
+                    <input type="email" id="login-email" placeholder="Email" class="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl font-light">lock</span>
+                    <input type="password" id="login-password" placeholder="Mot de passe" class="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <button onclick="handleLogin()" class="w-full bg-primary py-4 rounded-2xl text-black font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                    Se connecter
+                </button>
+                <p class="text-center text-sm text-slate-500 mt-6">
+                    Pas encore de compte ? <button onclick="toggleAuth(false)" class="text-primary font-bold">Créer un compte</button>
+                </p>
+            </div>
+
+            <div id="register-section" class="space-y-4 hidden">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl font-light">person</span>
+                    <input type="text" id="reg-name" placeholder="Nom complet" class="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl font-light">mail</span>
+                    <input type="email" id="reg-email" placeholder="Email" class="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl font-light">lock</span>
+                    <input type="password" id="reg-password" placeholder="Mot de passe" class="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <button onclick="handleRegister()" class="w-full bg-primary py-4 rounded-2xl text-black font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                    S'inscrire
+                </button>
+                <p class="text-center text-sm text-slate-500 mt-6">
+                    Déjà un compte ? <button onclick="toggleAuth(true)" class="text-primary font-bold">Se connecter</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuth(showLogin) {
+            document.getElementById('login-section').classList.toggle('hidden', !showLogin);
+            document.getElementById('register-section').classList.toggle('hidden', showLogin);
+        }
+
+        function handleRegister() {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            if (!name || !email || !password) {
+                alert("Veuillez remplir tous les champs");
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('poteau_users') || '[]');
+            if (users.find(u => u.email === email)) {
+                alert("Cet email est déjà utilisé");
+                return;
+            }
+
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password,
+                level: "Débutant",
+                matches: [],
+                reviews: { ratings: [5], comments: [] },
+                img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg"
+            };
+
+            users.push(newUser);
+            localStorage.setItem('poteau_users', JSON.stringify(users));
+            alert("Compte créé avec succès ! Connectez-vous.");
+            toggleAuth(true);
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const users = JSON.parse(localStorage.getItem('poteau_users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                localStorage.setItem('poteau_current_user', JSON.stringify(user));
+                window.location.href = 'index.html';
+            } else {
+                alert("Identifiants incorrects");
+            }
+        }
+    </script>
+</body>
+</html>

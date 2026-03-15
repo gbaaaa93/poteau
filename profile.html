@@ -223,19 +223,28 @@
 </div>
 <script>
     function loadPlayerData() {
+        // Find if we are looking at someone specific or ourselves
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameParam = urlParams.get('name');
+        
+        let profileUser = currentUser;
+        
+        if (nameParam && nameParam !== currentUser.name) {
+            // Finding the user in the "all reviews" or "all users" list
+            // For now we mock it if it's not us
+            document.querySelector('h1').innerText = nameParam;
+            document.getElementById('self-actions').classList.add('hidden');
+            document.getElementById('other-actions').classList.remove('hidden');
+            profileUser = { name: nameParam };
+        } else {
+            document.querySelector('h1').innerText = currentUser.name;
+            document.getElementById('self-actions').classList.remove('hidden');
+            document.getElementById('other-actions').classList.add('hidden');
+        }
+
         const playerName = document.querySelector('h1').innerText.trim();
         const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
         const playerData = allReviews[playerName];
-
-        // Check if it's my own profile (Mock check based on name)
-        const isMe = playerName === "Thomas L."; 
-        if (isMe) {
-            document.getElementById('self-actions').classList.remove('hidden');
-            document.getElementById('other-actions').classList.add('hidden');
-        } else {
-            document.getElementById('self-actions').classList.add('hidden');
-            document.getElementById('other-actions').classList.remove('hidden');
-        }
 
         if (playerData) {
             // Update Rating

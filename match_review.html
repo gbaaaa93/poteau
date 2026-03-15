@@ -250,6 +250,7 @@
 
             const comment = document.querySelector('textarea').value;
             const playerName = document.getElementById('modal-player-name').innerText;
+            const currentUser = JSON.parse(localStorage.getItem('poteau_current_user')) || { name: "Anonyme" };
             
             // Get existing reviews or init
             const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
@@ -260,7 +261,7 @@
                 allReviews[playerName].comments.push({
                     text: comment,
                     date: new Date().toLocaleDateString('fr-FR'),
-                    author: "Moi"
+                    author: currentUser.name
                 });
             }
             
