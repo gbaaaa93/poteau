@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Matches Dashboard - Poteau Bis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df233",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between max-w-full mx-auto w-full">
+<h1 class="text-xl font-bold tracking-tight">Mes Matchs</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</button>
+</div>
+<nav class="flex px-4 gap-6 max-w-full mx-auto w-full overflow-x-auto hide-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2" href="#">
+<span class="text-sm font-bold whitespace-nowrap">À venir</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2" href="#">
+<span class="text-sm font-medium whitespace-nowrap">Passés</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2" href="#">
+<span class="text-sm font-medium whitespace-nowrap">Organisés</span>
+</a>
+</nav>
+</header>
+<main class="flex-1 max-w-full mx-auto w-full p-4 pb-24 space-y-6">
+<section class="space-y-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Cette semaine</h2>
+<div class="group relative flex flex-col bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden shadow-lg transition-all active:scale-[0.98]">
+<div class="relative h-40 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Vue aérienne d'un terrain de football synthétique moderne" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjMmHwTkgeXaoYw-EM5Twnpuoa6JScPj5n7LWnVjqkP_g1KRJNf3KdLf-Lzowuxnsua6HTYgSFa5X3PEXasI8EQsRFepYKw6yRXeDLwwE48qh_3WfcNncVAtW-tndRKDfjwHcMYMYTYFXt7LU1CZB0kKgGSDCooIHGB9WHjr7Hpeu4ySHhaDzF4G5NUhm2PalqCZK8GzxXr8FGKwBf6tH2poU6LsFCoCXd-DZOSY6TFLRcWbCMr8nlf8di3mbbY8S8sBX89qKNnw')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute top-3 left-3 bg-primary text-background-dark text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                        Confirmé ✓
+                    </div>
+</div>
+<div class="p-4 space-y-3">
+<div>
+<h3 class="text-lg font-bold leading-tight">Football 5v5 • Demain 20h30</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Stade Charlety</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<a class="text-primary text-sm font-medium flex items-center gap-1 group" href="#">
+                            Chat du match
+                            <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+<button class="bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold shadow-md shadow-primary/20">
+                            Voir les joueurs
+                        </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden shadow-lg transition-all active:scale-[0.98]">
+<div class="relative h-40 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Gros plan d'une raquette et balle de padel sur le court" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA10r0d93Z2O0Ut8jM9nWWj6Pr3ARsVB-cq5ocOIw6kkb4-ugX8K1rMIT1XxV7M4pXALZrlQ3NylmNGM02QkPIkL2O0xk5I3dLNp4rkKaufQQLPa7Ds4YcubS4rL-v3fA25VatXFOGF9cnlspFVovcwFlhrVH1MyVUrzcI59kVJUz8kdpEsclOuaphNbV3ta0uI9egP4xAnZc4GYOVI0lyhly6xHl-gASu7m-h8ufv08h0C0dG5Y_qq5TaubvoLzSTHx39tEZnoNA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                        En attente (5/8)
+                    </div>
+</div>
+<div class="p-4 space-y-3">
+<div>
+<h3 class="text-lg font-bold leading-tight">Padel 2v2 • Mer. 19h</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Padel Club</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<a class="text-rose-500 text-sm font-medium border-b border-rose-500/30" href="#">
+                            Annuler ma place
+                        </a>
+<button class="bg-primary/20 text-primary border border-primary/30 px-4 py-2 rounded-lg text-sm font-bold">
+                            Inviter des amis
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-4 pt-4 opacity-75">
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Matchs passés</h2>
+<div class="flex items-center gap-4 bg-slate-100 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="h-14 w-14 rounded-lg bg-cover bg-center" data-alt="Match de football amateur flou" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnnvUYZ22BV2Grfdc9_mEWJQwBqzhchoZJJMqqpPe9mraE8slqdmy_mnu5zcWQavhSA5Nh4TmLAnird2WDwqAUFnn4SHN6ksCklJtjaO0z-yAPAhrbXP-o4YYrh4dppSXAhUNGFNjtFzLYu349Z4H-N-aY2ID27s8JVr-rh5y_twRZjxTtCMqCPVh_VkM2PetZyBDWQR4PZY65MkBiQV4nVVkHeb08BPy0lLyoUCslUSzcvPBtYRZquwRjwaXLfrfJZMn_o_w5Qg')"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-bold">Football 5v5</p>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Terminé</span>
+</div>
+<p class="text-xs text-slate-500">24 Oct. • 18:00</p>
+<button class="mt-2 text-amber-500 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm fill-1">star</span>
+                        Noter les joueurs
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-background-dark rounded-full shadow-2xl flex items-center justify-center z-30 transform hover:scale-110 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] left-0 right-0 z-40 bg-background-light dark:bg-background-dark border-t border-primary/10">
+<div class="flex max-w-full mx-auto items-center justify-around px-4 pb-6 pt-2">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium leading-none">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">calendar_month</span>
+<span class="text-[10px] font-bold leading-none">Mes Matchs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-medium leading-none">Découvrir</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium leading-none">Profil</span>
+</a>
+</div>
+</footer>
+</div>
+</body></html>

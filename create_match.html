@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df233",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+    <div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
+        
+        <!-- Header -->
+        <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-6 border-b border-slate-200 dark:border-primary/10">
+            <div class="flex items-center justify-between">
+                <button onclick="history.back()" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-primary/10 text-slate-900 dark:text-primary">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <h1 class="text-lg font-bold">Organiser un Match</h1>
+                <div class="w-10"></div>
+            </div>
+        </header>
+
+        <main class="p-6 space-y-8">
+            <!-- Game Type Selector -->
+            <div class="flex p-1 bg-slate-200 dark:bg-primary/5 rounded-2xl border border-slate-200 dark:border-primary/10">
+                <button id="tab-five" onclick="switchSport('Five')" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all bg-primary text-black">Five (Football)</button>
+                <button id="tab-padel" onclick="switchSport('Padel')" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all text-slate-500 hover:text-slate-900 dark:hover:text-slate-100">Padel</button>
+            </div>
+
+            <!-- Nom du Five/Padel -->
+            <section>
+                <label id="sport-name-label" class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Nom du Five</label>
+                <input type="text" placeholder="Ex: Urban Soccer Aubervilliers" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary outline-none">
+            </section>
+
+            <!-- Localisation -->
+            <section>
+                <label class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Ville</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">location_on</span>
+                    <select class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl pl-12 pr-4 py-3 appearance-none outline-none focus:ring-primary">
+                        <option>Paris</option>
+                        <option>Lyon</option>
+                        <option>Marseille</option>
+                        <option>Bordeaux</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Horaires & Durée -->
+            <section class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Heure</label>
+                    <input type="time" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 outline-none focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Durée</label>
+                    <select id="match-duration" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 outline-none focus:ring-primary">
+                        <option value="60">60 min</option>
+                        <option value="90">90 min</option>
+                        <option value="120">120 min</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Prix -->
+            <section>
+                <label class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Prix par personne (€)</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">payments</span>
+                    <input type="number" placeholder="12" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl pl-12 pr-4 py-3 outline-none focus:ring-primary">
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Lien de paiement</label>
+                <p class="text-[10px] text-slate-500 mb-2">Les joueurs utiliseront ce lien pour payer avant de rejoindre.</p>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">link</span>
+                    <input type="url" placeholder="https://www.lefive.fr/" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl pl-12 pr-4 py-3 outline-none focus:ring-primary">
+                </div>
+            </section>
+
+            <!-- Submit Button -->
+            <button onclick="publishMatch()" id="publish-btn" class="w-full bg-primary text-black font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition-all">
+                Publier le Match
+            </button>
+        </main>
+    </div>
+
+    <script>
+        let selectedSport = 'Five';
+
+        function switchSport(sport) {
+            selectedSport = sport;
+            const tabFive = document.getElementById('tab-five');
+            const tabPadel = document.getElementById('tab-padel');
+            const label = document.getElementById('sport-name-label');
+            const input = label.nextElementSibling;
+
+            const inputPayment = document.querySelector('input[placeholder*="lefive.fr"], input[placeholder*="4padel.fr"]');
+
+            if (sport === 'Five') {
+                tabFive.className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all bg-primary text-black";
+                tabPadel.className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all text-slate-500 hover:text-slate-900 dark:hover:text-slate-100";
+                label.innerText = "Nom du Five";
+                input.placeholder = "Ex: Urban Soccer Aubervilliers";
+                inputPayment.placeholder = "https://www.lefive.fr/";
+            } else {
+                tabPadel.className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all bg-primary text-black";
+                tabFive.className = "flex-1 py-3 rounded-xl text-sm font-bold transition-all text-slate-500 hover:text-slate-900 dark:hover:text-slate-100";
+                label.innerText = "Nom du Club de Padel";
+                input.placeholder = "Ex: Padel Horizon";
+                inputPayment.placeholder = "https://www.4padel.fr/";
+            }
+        }
+
+        function publishMatch() {
+            const btn = document.getElementById('publish-btn');
+            const originalText = btn.innerText;
+            
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Publication en cours...';
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+
+            // Simulation d'enregistrement et redirection
+            setTimeout(() => {
+                window.location.href = 'match.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

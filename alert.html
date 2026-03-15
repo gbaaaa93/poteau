@@ -1,0 +1,189 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df233",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-primary/20">
+<div class="flex items-center p-4 justify-between">
+<button onclick="history.back()" class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Nouvelle alerte</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">notifications</span>
+</button>
+</div>
+</div>
+<!-- Sport Tabs -->
+<div class="px-4">
+<div class="flex gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-primary pb-3 pt-4" href="#">
+<p class="text-sm font-bold">Football</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4" href="#">
+<p class="text-sm font-bold">Padel</p>
+</a>
+</div>
+</div>
+</header>
+<main class="flex-1 space-y-8 py-6">
+<!-- Day Selector -->
+<section>
+<h3 class="text-lg font-bold px-4 mb-4">Jour de l'alerte</h3>
+<div class="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/10 border border-transparent">
+<p class="text-sm font-semibold">Lun</p>
+</div>
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/10 border border-transparent">
+<p class="text-sm font-semibold">Mar</p>
+</div>
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/10 border border-transparent">
+<p class="text-sm font-semibold">Mer</p>
+</div>
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/10 border border-transparent">
+<p class="text-sm font-semibold">Jeu</p>
+</div>
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/10 border border-transparent">
+<p class="text-sm font-semibold">Ven</p>
+</div>
+<div class="flex h-12 min-w-[64px] shrink-0 items-center justify-center rounded-xl bg-primary text-background-dark border border-primary">
+<p class="text-sm font-bold">Sam</p>
+</div>
+</div>
+</section>
+<!-- Time Slot Picker -->
+<section class="px-4">
+<h3 class="text-lg font-bold mb-4">Créneau horaire</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-slate-200 dark:bg-primary/10 border border-primary/20">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">De</p>
+<p class="text-xl font-bold">18h00</p>
+</div>
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-slate-200 dark:bg-primary/10 border border-primary/20">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">À</p>
+<p class="text-xl font-bold">22h00</p>
+</div>
+</div>
+</section>
+<!-- Location Section -->
+<section class="px-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Localisation</h3>
+<button class="text-sm font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">add_location_alt</span>
+                        Ajouter une zone
+                    </button>
+</div>
+<div class="relative w-full h-48 rounded-xl overflow-hidden bg-slate-300 dark:bg-primary/5 mb-4 ring-1 ring-primary/20">
+<img class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Dark stylized map of Paris city center" data-location="Paris" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALVyKUHISut-UirbCpi3V3xt4Dct9q7gQDHITOirk6QAxdB85xpB7-jfs8t-akASy7mZrZBg6beLxx2p3qNjmX7F6jxavdkq06xlTBN5V_CeKBWmQwsckAdT3IdyFjDnAv3RjkGqBjeKd-OH5jfnMlA_V-7s4VCHNdmnlak-I3EQn_TXVxGLaNSJpntgdAtzaU2tomVXGFllT9wrXh7EIwL9NWUveb_Mhj_m3hJqHhDCKwIjUQ4v7dgrRU_lvrOBDwpHvYW2jPnA"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-24 h-24 rounded-full bg-primary/20 border border-primary animate-pulse flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_#0df233]"></div>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm font-medium">
+<span>Rayon de recherche</span>
+<span class="text-primary font-bold">2.5 km</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-primary/20 rounded-full appearance-none accent-primary cursor-pointer" max="5000" min="500" type="range" value="2500"/>
+<div class="flex justify-between text-[10px] text-slate-500 uppercase font-bold tracking-widest">
+<span>500m</span>
+<span>5km</span>
+</div>
+</div>
+</section>
+<!-- Level Preference -->
+<section class="px-4">
+<h3 class="text-lg font-bold mb-4">Votre niveau</h3>
+<div class="flex gap-2">
+<button class="px-5 py-2.5 rounded-full border border-slate-300 dark:border-primary/30 text-sm font-medium">Débutant</button>
+<button class="px-5 py-2.5 rounded-full bg-primary text-background-dark text-sm font-bold">Intermédiaire</button>
+<button class="px-5 py-2.5 rounded-full border border-slate-300 dark:border-primary/30 text-sm font-medium">Avancé</button>
+</div>
+</section>
+<!-- Pricing -->
+<section class="px-4">
+<h3 class="text-lg font-bold mb-4">Formule d'alerte</h3>
+<div class="grid grid-cols-3 gap-3">
+<div class="relative flex flex-col p-4 rounded-xl bg-slate-200 dark:bg-primary/10 border-2 border-primary ring-4 ring-primary/10">
+<span class="text-[10px] font-bold text-primary mb-2">ACTIVE</span>
+<p class="text-xs font-bold leading-tight">Pay-per-game</p>
+<p class="mt-auto text-lg font-bold">Free</p>
+</div>
+<div class="flex flex-col p-4 rounded-xl bg-slate-200 dark:bg-primary/5 border border-slate-300 dark:border-primary/20">
+<span class="text-[10px] font-bold text-slate-400 mb-2">PREMIUM</span>
+<p class="text-xs font-bold leading-tight">Hebdo.</p>
+<p class="mt-auto text-lg font-bold">9€<span class="text-[10px] text-slate-500">/sem</span></p>
+</div>
+<div class="flex flex-col p-4 rounded-xl bg-slate-200 dark:bg-primary/5 border border-slate-300 dark:border-primary/20">
+<span class="text-[10px] font-bold text-slate-400 mb-2">ELITE</span>
+<p class="text-xs font-bold leading-tight">Mensuel</p>
+<p class="mt-auto text-lg font-bold">29€<span class="text-[10px] text-slate-500">/m</span></p>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Action Button -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] left-0 right-0 p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent">
+<button class="w-full bg-primary text-background-dark py-4 rounded-xl font-bold text-lg shadow-[0_8px_30px_rgb(13,242,51,0.3)] hover:brightness-110 active:scale-[0.98] transition-all">
+                Activer cette alerte
+            </button>
+</div>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #0df233;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 4px solid #102213;
+            box-shadow: 0 0 10px rgba(13, 242, 51, 0.5);
+        }
+    </style>
+
+```
+</div>
+</body></html>

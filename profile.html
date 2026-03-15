@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df233",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 justify-between border-b border-slate-200 dark:border-primary/10">
+<button onclick="history.back()" class="flex size-10 shrink-0 items-center justify-start cursor-pointer hover:bg-slate-200 dark:hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100 pl-2">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Profil</h2>
+<div class="flex size-10 items-center justify-end cursor-pointer">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">more_horiz</span>
+</div>
+</div>
+<!-- Profile Header Section -->
+<div class="px-4 py-6">
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="flex h-24 w-24 items-center justify-center rounded-full bg-primary text-background-dark text-3xl font-bold shadow-lg shadow-primary/20">
+                    TL
+                </div>
+<div class="absolute bottom-1 right-1 bg-background-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-primary text-[20px] align-middle" style="font-variation-settings: 'FILL' 1">verified</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Thomas L.</h1>
+</div>
+<div class="flex flex-col gap-1.5 mt-2">
+    <div class="flex items-center justify-between gap-4">
+        <p class="text-[11px] font-bold text-slate-500 dark:text-primary/60 uppercase tracking-tighter">Note des joueurs</p>
+        <div class="flex items-center gap-2">
+            <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div class="bg-primary h-full" style="width: 96%"></div>
+            </div>
+            <p class="text-sm font-bold text-primary">4.8</p>
+        </div>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+        <p class="text-[11px] font-bold text-slate-500 dark:text-primary/60 uppercase tracking-tighter">Note personnelle</p>
+        <div class="flex items-center gap-2">
+            <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div class="bg-slate-400 h-full" style="width: 84%"></div>
+            </div>
+            <p class="text-sm font-bold text-slate-400">4.2</p>
+        </div>
+    </div>
+</div>
+
+<!-- SofaScore Style Recent Form -->
+<div class="mt-4 pt-3 border-t border-slate-200 dark:border-primary/5">
+    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Forme récente</p>
+    <div class="flex gap-2">
+        <div class="flex flex-col items-center gap-1">
+            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.4</div>
+            <span class="text-[8px] font-bold text-slate-500 uppercase">12/10</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.1</div>
+            <span class="text-[8px] font-bold text-slate-500 uppercase">08/10</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <div class="size-9 rounded-lg bg-[#f9bc02] flex items-center justify-center text-background-dark text-xs font-bold shadow-lg shadow-[#f9bc02]/20">7.2</div>
+            <span class="text-[8px] font-bold text-slate-500 uppercase">01/10</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.8</div>
+            <span class="text-[8px] font-bold text-slate-500 uppercase">25/09</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <div class="size-9 rounded-lg bg-[#f9bc02] flex items-center justify-center text-background-dark text-xs font-bold shadow-lg shadow-[#f9bc02]/20">6.9</div>
+            <span class="text-[8px] font-bold text-slate-500 uppercase">18/09</span>
+        </div>
+    </div>
+</div>
+
+<p class="text-[10px] text-slate-500 dark:text-slate-400 mt-4 uppercase tracking-widest font-bold bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full w-fit">Membre Premium</p>
+</div>
+</div>
+</div>
+<!-- Quick Stats Grid -->
+<div class="grid grid-cols-3 gap-3 px-4 py-2">
+<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Foot 5v5</p>
+<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Format</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Paris</p>
+<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Ville</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Inter.</p>
+<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Niveau</p>
+</div>
+</div>
+<!-- Sports Badges -->
+<div class="flex gap-2 p-4 overflow-x-auto no-scrollbar">
+<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
+<span class="text-sm">Football ⚽</span>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
+<span class="text-sm">Padel 🎾</span>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
+<span class="text-sm">Tennis 🎾</span>
+</div>
+</div>
+<!-- Matchs en commun Section -->
+<div class="mt-4">
+<div class="flex items-center justify-between px-4 pb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Matchs en commun</h3>
+<span class="text-primary text-sm font-semibold">Voir tout</span>
+</div>
+<div class="flex flex-col gap-3 px-4">
+<!-- Match Card 1 -->
+<div class="flex gap-4 p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
+<div class="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-slate-300 dark:bg-slate-800">
+<div class="w-full h-full bg-gradient-to-br from-primary/40 to-primary/10" data-alt="Abstract green football field pattern"></div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Five Paris 18 - 5v5</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">calendar_today</span>
+<p class="text-xs text-slate-500 dark:text-primary/60">12 Octobre • 19:00</p>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">location_on</span>
+<p class="text-xs text-slate-500 dark:text-primary/60">Paris, France</p>
+</div>
+</div>
+</div>
+<!-- Match Card 2 -->
+<div class="flex gap-4 p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
+<div class="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-slate-300 dark:bg-slate-800">
+<div class="w-full h-full bg-gradient-to-br from-primary/30 to-background-dark" data-alt="Abstract geometric dark sports pattern"></div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 font-bold">UrbanSoccer - Padel</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">calendar_today</span>
+<p class="text-xs text-slate-500 dark:text-primary/60">05 Octobre • 18:30</p>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-slate-500 dark:text-primary/60">location_on</span>
+<p class="text-xs text-slate-500 dark:text-primary/60">Aubervilliers, France</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3 p-6 mt-6">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">person_add</span>
+            Ajouter en ami
+        </button>
+<button class="w-full bg-transparent border-2 border-primary text-primary hover:bg-primary/10 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">send</span>
+            Envoyer un message
+        </button>
+</div>
+<!-- Report Player -->
+<div class="flex justify-center pb-10">
+<button class="flex items-center gap-1.5 text-red-500 text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">report</span>
+            Signaler ce joueur
+        </button>
+</div>
+</div>
+</body></html>
