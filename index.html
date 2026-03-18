@@ -1,217 +1,242 @@
 <!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0df233",
-                        "background-light": "#f5f8f6",
-                        "background-dark": "#102213",
+                        "primary": "#94FB2D",
+                        "background-light": "#F8FAFC",
+                        "slate": {
+                            50: "#f8fafc",
+                            100: "#f1f5f9",
+                            200: "#e2e8f0",
+                            300: "#cbd5e1",
+                            400: "#94a3b8",
+                            500: "#64748b",
+                            600: "#475569",
+                            700: "#334155",
+                            800: "#1e293b",
+                            900: "#0f172a",
+                        }
                     },
                     fontFamily: {
-                        "display": ["Lexend", "sans-serif"]
+                        "display": ["Outfit", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
-<style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
-  <script>
-    // Community Data Store (Mock)
-    const communityData = {
-        "Paris": [
-            { id: 1, name: "Five Paris 13", address: "14-16 Rue Regnault, 75013", type: "Football", price: 12, spots: 2, time: "20h30", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuA42q5AREzZ18R64gpTQcSBOyAm-d4M5t0KfP1KgdpzBUABoxLvZoohArt2K_adUaTzPqkKmTvGwtnnZvEM-_7Lx9vFJNF4-0ITyu8qgetzGSpG3kiJSGyK-LBO0vfTZQ1kwoqAVQo3OGyMsqEWJA0AekqyRb6Cbr3V23LSW2kXHwmZ07o_3JsBQ9QfLLnJKFQf_-RkOd8e7CIYfwCw3I-NcXkFRjw2StA0bKcCG9yDv6FVJFI-hcUHcydiX4PDZ_a16apirDkjIA" },
-            { id: 2, name: "Padel Horizon", address: "Sucy-en-Brie", type: "Padel", price: 15, spots: 4, time: "21h00", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAC_nDBJjq2tl59FPp-HHVkswMmASyq-KQr2Ff9UXjaXAKV25CcoOe22JqMGaM3HLLVkj8yQ__0-vrMSYBUQ3aco_WVjLPnuVMub_KKQxMrcodEbGsDExhOjKzCoiwaRNpURELloQ7GoN2xxVsti638gIGMlvKvgbyFye7IuS0HuX9leKb7apUyGiEGyLXN1BnBQAQNKZL65w9nmDz3FpdVvHrkAtAsX4YokxK016POUOQ6iVXWRtl3eJc2eD5Xk0pYH-UfgQDEVw" }
-        ],
-        "Lyon": [
-            { id: 3, name: "UrbanSoccer Lyon", address: "69007 Lyon", type: "Football", price: 10, spots: 1, time: "19h45", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDkBVJGvgI63nh90yHs4VcMcBN6kCCTB72unhm_EuIstVN9PQW0VjZd4wWAzvOXfsp7XNVQXkdBNR2FqpkUU6PPMjaiYU7AIljsCPeinyJnUzK-HLml70R-O54BsylMpHxN5LoV7YFQF8VkyVvLT8y-fTzEeGc5yKGcyLiY6wEbRklcUGHFw7eqUl7V5eJOBg2_z-Iu4RT4gACY_kdYp-iuLJOIMNLjANZXhStXfPsDQFQu9eaqMNeq8KLOOpEvMzMeuwTxRXr2kQ" }
-        ],
-        "Marseille": [
-            { id: 4, name: "Le Five Marseille", address: "13010 Marseille", type: "Football", price: 11, spots: 5, time: "21h30", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyKjAo3NORLHBUzTbIvsrqGz4G4NYgCwKzIMlIQLok79MIMVRVQAGx1-OhLfOdn3SWuBVr2WiM8oBlf4GZG2GGer51GeTDMJ6Um65VQUJD0yI8jCefwqQVoBJRzLUqTJhB7X7Z29scUqJH1jGF3zE8Z2VzohJsbAA79AmG_eNCOKKEOV0_cgVdHCbTDaUnYEBlvh-j2q51epSOGTWTqWazkOJmJRgtHfoKs4MM_juvvSPSjdBjDim2HwBkptSWbtk2UDiYH37TXg" }
-        ]
-    };
+</head>
 
-    async function detectCity() {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
-                try {
-                    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
-                    const data = await response.json();
-                    const city = data.city || "Paris";
-                    document.getElementById('current-city').value = city;
-                    updateMatchList(city);
-                } catch (e) {
-                    console.error("Geocoding failed", e);
-                    updateMatchList("Paris");
-                }
-            }, () => {
-                updateMatchList("Paris");
-            });
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('fivender_current_user'));
+        if (!currentUser && !window.location.href.includes('login.html')) {
+            window.location.href = 'login.html';
         }
-    }
+    </script>
 
-    function updateMatchList(city) {
-        const container = document.getElementById('match-list-container');
-        const matches = communityData[city] || [];
-        
-        if (matches.length === 0) {
-            container.innerHTML = `<p class="text-sm text-slate-500 italic px-4">Aucun Five enregistré par la communauté à ${city} pour le moment.</p>`;
-            return;
-        }
-
-        container.innerHTML = matches.map(match => `
-            <div class="min-w-[280px] bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col shadow-sm">
-                <a href="match.html?type=${match.type}&name=${encodeURIComponent(match.name)}" class="block">
-                    <div class="relative h-40 bg-cover bg-center" style="background-image: url('${match.img}')">
-                        <div class="absolute top-3 left-3 bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">${match.type}</div>
-                        <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs px-2 py-1 rounded-lg">${match.time}</div>
+    <div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light flex flex-col pb-24 shadow-2xl">
+        <!-- Header Section -->
+        <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md px-4 pt-6 pb-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5 overflow-hidden bg-white">
+                        <img id="user-avatar" alt="Avatar" class="w-full h-full rounded-full object-cover"
+                            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" />
                     </div>
-                    <div class="p-4 flex flex-col gap-1">
-                        <h4 class="font-bold text-base text-slate-900 dark:text-slate-100">${match.name}</h4>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 truncate">${match.address}</p>
-                        <div class="flex items-center justify-between mt-3">
-                            <span class="text-primary text-xs font-bold">${match.spots} places restantes</span>
-                            <span class="text-sm font-bold text-slate-900 dark:text-slate-100">${match.price}€/pers</span>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Profil
+                        </p>
+                        <h2 id="user-display-name" class="text-base font-extrabold text-slate-900">Chargement...</h2>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 transition-transform active:scale-90">
+                        <span class="material-symbols-outlined text-xl">notifications</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 transition-transform active:scale-90">
+                        <span class="material-symbols-outlined text-xl">settings</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 px-4 space-y-6 pt-2">
+            <!-- Welcome Card -->
+            <section
+                class="relative overflow-hidden bg-slate-900 rounded-[2rem] p-6 text-white shadow-xl shadow-slate-900/10">
+                <div class="relative z-10 space-y-1">
+                    <h1 id="welcome-msg" class="text-2xl font-black italic tracking-tight">HELLO 👋</h1>
+                    <p class="text-slate-400 text-sm font-medium">Prêt pour ton prochain match ?</p>
+                </div>
+                <!-- Abstract background shape -->
+                <div class="absolute -right-4 -top-4 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+                <div class="absolute -left-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+            </section>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">Matchs</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">0</p>
+                </div>
+                <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">Note</p>
+                    <div class="flex items-center gap-1 mt-1">
+                        <p class="text-2xl font-black text-slate-900">--</p>
+                        <span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Selector -->
+            <section class="space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-black uppercase tracking-widest text-slate-900 italic">Matchs à proximité
+                    </h3>
+                    <div class="flex items-center gap-1 bg-primary px-3 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-xs text-black">location_on</span>
+                        <select id="current-city"
+                            class="bg-transparent border-none text-[10px] font-bold text-black p-0 focus:ring-0 uppercase">
+                            <option value="Paris">Paris</option>
+                            <option value="Lyon">Lyon</option>
+                            <option value="Marseille">Marseille</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Matches Horizontal Scroll -->
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4" id="match-list">
+                    <!-- Matches will be injected here -->
+                    <div
+                        class="min-w-[280px] bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-lg">
+                        <div class="relative h-40">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=400"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 left-4 bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full">
+                                FOOTBALL</div>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-extrabold text-slate-900">Le Five Paris 18</h4>
+                                <span class="text-primary font-black">12€</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-slate-500 text-xs font-bold">
+                                    <span class="material-symbols-outlined text-sm">schedule</span>
+                                    20:30
+                                </div>
+                                <button
+                                    class="bg-slate-900 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-wider">Rejoindre</button>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Community Section -->
+            <section class="space-y-4 pt-2">
+                <h3 class="text-sm font-black uppercase tracking-widest text-slate-900 italic">Nouveaux arrivants</h3>
+                <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+                    <div
+                        class="flex-shrink-0 w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center p-0.5">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Julien"
+                            class="w-full h-full rounded-xl object-cover">
+                    </div>
+                    <div
+                        class="flex-shrink-0 w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center p-0.5">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Marie"
+                            class="w-full h-full rounded-xl object-cover">
+                    </div>
+                    <div
+                        class="flex-shrink-0 w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center p-0.5">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas"
+                            class="w-full h-full rounded-xl object-cover">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation Bar -->
+        <nav
+            class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light border-t border-slate-200 px-6 py-3 flex justify-between items-center z-50">
+            <a class="flex flex-col items-center gap-1 text-primary" href="index.html">
+                <span class="material-symbols-outlined fill-1">home</span>
+                <span class="text-[10px] font-extrabold uppercase tracking-tighter">Home</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="dashboard.html">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Matchs</span>
+            </a>
+            <div class="relative -top-8">
+                <a href="create_match.html"
+                    class="w-14 h-14 bg-primary text-black rounded-full shadow-xl shadow-primary/40 flex items-center justify-center border-4 border-background-light transform transition-transform active:scale-90">
+                    <span class="material-symbols-outlined text-2xl font-black">add</span>
                 </a>
             </div>
-        `).join('');
-    }
-
-    window.onload = () => {
-        detectCity();
-        document.getElementById('current-city').onchange = (e) => updateMatchList(e.target.value);
-    };
-  </script>
-  </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
-<!-- Main Wrapper (Mobile Viewport) -->
-<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
-<!-- Header Section -->
-<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-4">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5 overflow-hidden">
-<img id="user-avatar" alt="User Profile" class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA4ZgSu2M11-UENGgVYCuJw3bM66Jgk0-XgExX3rYVAXufwKEFh2sgg7Z65cxLLQIT_IvPFOQ9XiJdJA7K66qWv89-hJS0GDUtk82zY5ylCflnAqbifl7l8HoTVmASlt6-WDJVsTSHSmc1XgFXz2I3RRai9w3HoIa1ZNsflLU8mA2JjOXInbKgkdLrkezOpuuhdGlyNWcuaHvUPnka2raRiHyNojqdEuSjHgApzsT8dUFo85Wt73za8WPzj4cdyUyV8SasJE1DHg"/>
-</div>
-<div>
-<h1 id="welcome-msg" class="text-xs font-semibold text-slate-500 uppercase tracking-tighter">Hello 👋</h1>
-<p id="user-display-name" class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Bientôt à toi</p>
-</div>
-</div>
-<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-primary/10 text-slate-900 dark:text-primary">
-<span class="material-symbols-outlined">search</span>
-</button>
-</div>
-<!-- Location Selector -->
-<div class="mt-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-sm">location_on</span>
-<div class="relative inline-block">
-<select id="current-city" class="appearance-none bg-transparent border-none p-0 pr-6 text-sm font-semibold focus:ring-0 text-slate-700 dark:text-slate-300">
-<option>Paris</option>
-<option>Lyon</option>
-<option>Marseille</option>
-<option>Bordeaux</option>
-</select>
-<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-xs pointer-events-none">expand_more</span>
-</div>
-</div>
-</header>
-<!-- Active Alerts Chips -->
-<section class="px-4 mt-2">
-<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">Alertes actives</h3>
-<div class="flex flex-wrap gap-2">
-<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 dark:border-primary/20 bg-white dark:bg-primary/5">
-<span class="material-symbols-outlined text-primary text-xs">notifications_active</span>
-<span class="text-xs font-medium">Mer. 18h-20h • Paris 15e</span>
-</div>
-<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 dark:border-primary/20 bg-white dark:bg-primary/5">
-<span class="material-symbols-outlined text-primary text-xs">notifications_active</span>
-<span class="text-xs font-medium">Sam. 10h • Boulogne</span>
-</div>
-</div>
-</section>
-<!-- Horizontal Scroll Section: Matchs near you -->
-<section class="mt-8">
-<div class="flex items-center justify-between px-4 mb-4">
-<h2 class="text-lg font-bold">Matchs près de toi ce soir</h2>
-<a class="text-primary text-sm font-semibold" href="#">Voir tout</a>
-</div>
-<div id="match-list-container" class="flex overflow-x-auto gap-4 px-4 no-scrollbar">
-    <!-- Matchs injectés dynamiquement par JS -->
-</div>
-</section>
-<!-- Secondary Section: Popular Near You -->
-<section class="mt-8 px-4">
-<h2 class="text-lg font-bold mb-4">Populaire autour de vous</h2>
-<div class="space-y-3">
-<div class="flex items-center gap-4 bg-white dark:bg-slate-900/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-<div class="w-16 h-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Soccer ball on green field" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyKjAo3NORLHBUzTbIvsrqGz4G4NYgCwKzIMlIQLok79MIMVRVQAGx1-OhLfOdn3SWuBVr2WiM8oBlf4GZG2GGer51GeTDMJ6Um65VQUJD0yI8jCefwqQVoBJRzLUqTJhB7X7Z29scUqJH1jGF3zE8Z2VzohJsbAA79AmG_eNCOKKEOV0_cgVdHCbTDaUnYEBlvh-j2q51epSOGTWTqWazkOJmJRgtHfoKs4MM_juvvSPSjdBjDim2HwBkptSWbtk2UDiYH37TXg')"></div>
-<div class="flex-1 min-w-0">
-<h4 class="text-sm font-bold truncate">Urban Soccer Aubervilliers</h4>
-<p class="text-xs text-slate-500 dark:text-slate-400">10 terrains • Ouvert jusqu'à 00h</p>
-<div class="flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-primary text-[14px] fill-1">star</span>
-<span class="text-[11px] font-medium">4.8 (120 avis)</span>
-</div>
-</div>
-<button class="bg-primary/20 text-primary p-2 rounded-lg">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-<div class="flex items-center gap-4 bg-white dark:bg-slate-900/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-<div class="w-16 h-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Padel racquets lean against wall" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABWMV3FlJMCMrvC-eFwU6gz_p3v2qxXWMIZ5awovHumn5d0cbnsLWZgCAQytnybRfiLqSwJZGTR9F3seGGDcObs0si5piPg-3XlknCBOqneWEWZLjxHv9iBB31lTYZacnvHpzpa3rwGn7ct6fDkBwxYrwrpw_2GzzRQlbSg2b8a_Aq6LGTPbf6n_mA7KPsH1euAtSt-tfIUt5UyP9kTIOiEU9nTg1_WIyEoJKMKpZQ76LjnksWov08MB1_4s_HTpwqQAkit5Qlgg')"></div>
-<div class="flex-1 min-w-0">
-<h4 class="text-sm font-bold truncate">Casa Padel Uno</h4>
-<p class="text-xs text-slate-500 dark:text-slate-400">12 pistes • Premium Lounge</p>
-<div class="flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-primary text-[14px] fill-1">star</span>
-<span class="text-[11px] font-medium">4.9 (85 avis)</span>
-</div>
-</div>
-<button class="bg-primary/20 text-primary p-2 rounded-lg">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-</section>
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
-    <a class="flex flex-col items-center gap-1 text-primary" href="index.html">
-        <span class="material-symbols-outlined fill-1">home</span>
-        <span class="text-[10px] font-medium">Accueil</span>
-    </a>
-    <a class="flex flex-col items-center gap-1 text-slate-400" href="dashboard.html">
-        <span class="material-symbols-outlined">explore</span>
-        <span class="text-[10px] font-medium">Matchs</span>
-    </a>
-    <div class="relative -top-8">
-        <a href="create_match.html" class="w-14 h-14 bg-primary text-black rounded-full shadow-lg shadow-primary/40 flex items-center justify-center border-4 border-background-light dark:border-background-dark">
-            <span class="material-symbols-outlined text-2xl font-bold">add</span>
-        </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Alertes</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Profil</span>
+            </a>
+        </nav>
     </div>
-    <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
-        <span class="material-symbols-outlined">notifications</span>
-        <span class="text-[10px] font-medium">Alertes</span>
-    </a>
-    <a class="flex flex-col items-center gap-1 text-slate-400" href="profile.html">
-        <span class="material-symbols-outlined">person</span>
-        <span class="text-[10px] font-medium">Profil</span>
-    </a>
-</nav>
-</div>
-</body></html>
+
+    <script>
+        if (currentUser) {
+            document.getElementById('user-display-name').innerText = currentUser.name.toUpperCase();
+            document.getElementById('welcome-msg').innerText = "HELLO " + currentUser.name.split(' ')[0].toUpperCase() + " 👋";
+            if (currentUser.img) document.getElementById('user-avatar').src = currentUser.img;
+            else {
+                document.getElementById('user-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${currentUser.name}`;
+            }
+        }
+
+        function detectCity() {
+            const cities = ["Paris", "Lyon", "Marseille", "Bordeaux", "Lille"];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            document.getElementById('current-city').value = randomCity;
+            // updateMatchList(randomCity);
+        }
+
+        window.onload = () => {
+            detectCity();
+        };
+    </script>
+</body>
+
+</html>

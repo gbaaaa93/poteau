@@ -1,294 +1,266 @@
 <!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0df233",
-                        "background-light": "#f5f8f6",
-                        "background-dark": "#102213",
+                        "primary": "#94FB2D",
+                        "background-light": "#F8FAFC",
                     },
                     fontFamily: {
-                        "display": ["Lexend", "sans-serif"]
+                        "display": ["Outfit", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
-<style>
+    <style>
         body {
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
-  <script>
-    // Auth Protection
-    const currentUser = JSON.parse(localStorage.getItem('poteau_current_user'));
-    if (!currentUser && !window.location.href.includes('login.html')) {
-        window.location.href = 'login.html';
-    }
-  </script>
-  </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
-<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
-<!-- Top Navigation Bar -->
-<div class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 justify-between border-b border-slate-200 dark:border-primary/10">
-<button onclick="history.back()" class="flex size-10 shrink-0 items-center justify-start cursor-pointer hover:bg-slate-200 dark:hover:bg-primary/10 rounded-full transition-colors">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100 pl-2">arrow_back</span>
-</button>
-<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Profil</h2>
-<div class="flex size-10 items-center justify-end cursor-pointer">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">more_horiz</span>
-</div>
-</div>
-<!-- Profile Header Section -->
-<div class="px-4 py-6">
-<div class="flex items-center gap-5">
-<div class="relative">
-<div class="flex h-24 w-24 items-center justify-center rounded-full bg-primary text-background-dark text-3xl font-bold shadow-lg shadow-primary/20" id="user-initials">
-                    --
-                </div>
-<div class="absolute bottom-1 right-1 bg-background-dark rounded-full p-0.5">
-<span class="material-symbols-outlined text-primary text-[20px] align-middle" style="font-variation-settings: 'FILL' 1">verified</span>
-</div>
-</div>
-<div class="flex flex-col">
-<div class="flex items-center gap-2">
-<h1 id="profile-name" class="text-2xl font-bold text-slate-900 dark:text-slate-100">Chargement...</h1>
-</div>
-<div class="flex flex-col gap-1.5 mt-2">
-    <div class="flex items-center justify-between gap-4">
-        <p class="text-[11px] font-bold text-slate-500 dark:text-primary/60 uppercase tracking-tighter">Note des joueurs</p>
-        <div class="flex items-center gap-2">
-            <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                <div id="rating-bar" class="bg-primary h-full" style="width: 80%"></div>
-            </div>
-            <p id="rating-value" class="text-sm font-bold text-primary">0.0</p>
-        </div>
-    </div>
-    <div class="flex items-center justify-between gap-4">
-        <p class="text-[11px] font-bold text-slate-500 dark:text-primary/60 uppercase tracking-tighter">Note personnelle</p>
-        <div class="flex items-center gap-2">
-            <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                <div class="bg-slate-400 h-full" style="width: 84%"></div>
-            </div>
-            <p class="text-sm font-bold text-slate-400">4.2</p>
-        </div>
-    </div>
-</div>
+</head>
 
-<!-- SofaScore Style Recent Form -->
-<div class="mt-4 pt-3 border-t border-slate-200 dark:border-primary/5">
-    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Forme récente</p>
-    <div class="flex gap-2">
-        <div class="flex flex-col items-center gap-1">
-            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.4</div>
-            <span class="text-[8px] font-bold text-slate-500 uppercase">12/10</span>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.1</div>
-            <span class="text-[8px] font-bold text-slate-500 uppercase">08/10</span>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div class="size-9 rounded-lg bg-[#f9bc02] flex items-center justify-center text-background-dark text-xs font-bold shadow-lg shadow-[#f9bc02]/20">7.2</div>
-            <span class="text-[8px] font-bold text-slate-500 uppercase">01/10</span>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div class="size-9 rounded-lg bg-[#028a0f] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-[#028a0f]/20">8.8</div>
-            <span class="text-[8px] font-bold text-slate-500 uppercase">25/09</span>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-            <div class="size-9 rounded-lg bg-[#f9bc02] flex items-center justify-center text-background-dark text-xs font-bold shadow-lg shadow-[#f9bc02]/20">6.9</div>
-            <span class="text-[8px] font-bold text-slate-500 uppercase">18/09</span>
-        </div>
-    </div>
-</div>
+<body class="bg-background-light text-slate-900 antialiased">
 
-<p class="text-[10px] text-slate-500 dark:text-slate-400 mt-4 uppercase tracking-widest font-bold bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full w-fit">Membre Premium</p>
-</div>
-</div>
-</div>
-<!-- Quick Stats Grid -->
-<div class="grid grid-cols-3 gap-3 px-4 py-2">
-<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
-<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Foot 5v5</p>
-<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Format</p>
-</div>
-<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
-<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Paris</p>
-<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Ville</p>
-</div>
-<div class="flex flex-col gap-1 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10 p-3">
-<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">Inter.</p>
-<p class="text-slate-500 dark:text-primary/60 text-xs font-medium uppercase">Niveau</p>
-</div>
-</div>
-<!-- Action Buttons -->
-<div id="self-actions" class="px-4 mt-6 grid grid-cols-2 gap-3 hidden">
-    <button class="flex items-center justify-center gap-2 py-3 bg-primary rounded-xl font-bold text-black shadow-lg shadow-primary/20">
-        <span class="material-symbols-outlined text-xl">edit</span>
-        Modifier
-    </button>
-    <button class="flex items-center justify-center gap-2 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
-        <span class="material-symbols-outlined text-xl">settings</span>
-        Paramètres
-    </button>
-</div>
-
-<div id="other-actions" class="px-4 mt-6 grid grid-cols-2 gap-3">
-    <button class="flex items-center justify-center gap-2 py-3 bg-primary rounded-xl font-bold text-black shadow-lg shadow-primary/20">
-        <span class="material-symbols-outlined text-xl">person_add</span>
-        Ajouter
-    </button>
-    <button class="flex items-center justify-center gap-2 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
-        <span class="material-symbols-outlined text-xl">chat_bubble</span>
-        Message
-    </button>
-</div>
-<!-- Sports Badges -->
-<div class="flex gap-2 p-4 overflow-x-auto no-scrollbar">
-<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
-<span class="text-sm">Football ⚽</span>
-</div>
-<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
-<span class="text-sm">Padel 🎾</span>
-</div>
-<div class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-200 dark:bg-primary/20 px-4 border border-slate-300 dark:border-primary/20">
-<span class="text-sm">Tennis 🎾</span>
-</div>
-</div>
-<!-- Matchs en commun Section -->
-<div class="mt-4">
-<div class="flex items-center justify-between px-4 pb-4">
-<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Derniers Avis</h3>
-<span class="text-primary text-sm font-semibold">Voir tout</span>
-</div>
-<div id="reviews-container" class="flex flex-col gap-3 px-4">
-    <!-- Avis injectés dynamiquement -->
-    <p class="text-xs text-slate-500 italic text-center py-4">Aucun avis pour le moment.</p>
-</div>
-</div>
-<!-- Action Buttons -->
-<div class="flex flex-col gap-3 p-6 mt-6">
-<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">person_add</span>
-            Ajouter en ami
-        </button>
-<button class="w-full bg-transparent border-2 border-primary text-primary hover:bg-primary/10 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
-<span class="material-symbols-outlined">send</span>
-            Envoyer un message
-        </button>
-</div>
-<!-- Report Player -->
-<div class="flex flex-col gap-3 px-4 pb-10">
-    <button onclick="handleLogout()" class="flex items-center justify-center gap-2 py-3 bg-red-500/10 text-red-500 rounded-xl font-bold border border-red-500/20 hover:bg-red-500 hover:text-white transition-all">
-        <span class="material-symbols-outlined text-xl">logout</span>
-        Déconnexion
-    </button>
-    <button onclick="handleResetAll()" class="flex items-center justify-center gap-2 py-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest hover:text-red-500 transition-colors mt-2">
-        <span class="material-symbols-outlined text-xs">delete_forever</span>
-        Réinitialiser toutes les données de l'application
-    </button>
-</div>
-    <!-- Navigation -->
-    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
-        <a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
-            <span class="material-symbols-outlined">home</span>
-            <span class="text-[10px] font-medium">Accueil</span>
-        </a>
-        <a class="flex flex-col items-center gap-1 text-slate-400" href="dashboard.html">
-            <span class="material-symbols-outlined">explore</span>
-            <span class="text-[10px] font-medium">Matchs</span>
-        </a>
-        <div class="relative -top-8">
-            <a href="create_match.html" class="w-14 h-14 bg-primary text-black rounded-full shadow-lg shadow-primary/40 flex items-center justify-center border-4 border-background-light dark:border-background-dark">
-                <span class="material-symbols-outlined text-2xl font-bold">add</span>
-            </a>
-        </div>
-        <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
-            <span class="material-symbols-outlined">notifications</span>
-            <span class="text-[10px] font-medium">Alertes</span>
-        </a>
-        <a class="flex flex-col items-center gap-1 text-primary" href="profile.html">
-            <span class="material-symbols-outlined fill-1">person</span>
-            <span class="text-[10px] font-medium">Profil</span>
-        </a>
-    </nav>
-</div>
-<script>
-    function loadPlayerData() {
-        if (!currentUser) return;
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const nameParam = urlParams.get('name');
-        
-        let profileUser = currentUser;
-        const nameDisplay = document.getElementById('profile-name');
-        const initialsDisplay = document.getElementById('user-initials');
-        
-        if (nameParam && nameParam !== currentUser.name) {
-            nameDisplay.innerText = nameParam;
-            initialsDisplay.innerText = nameParam.split(' ').map(n => n[0]).join('').toUpperCase();
-            document.getElementById('self-actions').classList.add('hidden');
-            document.getElementById('other-actions').classList.remove('hidden');
-            profileUser = { name: nameParam };
-        } else {
-            nameDisplay.innerText = currentUser.name;
-            initialsDisplay.innerText = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
-            document.getElementById('self-actions').classList.remove('hidden');
-            document.getElementById('other-actions').classList.add('hidden');
-        }
-
-        const playerName = nameDisplay.innerText.trim();
-        const allReviews = JSON.parse(localStorage.getItem('poteau_reviews') || '{}');
-        const playerData = allReviews[playerName];
-
-        if (playerData) {
-            if (playerData.ratings.length > 0) {
-                const avg = playerData.ratings.reduce((a, b) => a + b, 0) / playerData.ratings.length;
-                document.getElementById('rating-value').innerText = avg.toFixed(1);
-                document.getElementById('rating-bar').style.width = (avg * 10) + '%';
-            }
-
-            if (playerData.comments.length > 0) {
-                const container = document.getElementById('reviews-container');
-                container.innerHTML = playerData.comments.reverse().map(comment => `
-                    <div class="p-4 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-primary">Par ${comment.author}</span>
-                            <span class="text-[10px] text-slate-500">${comment.date}</span>
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">"${comment.text}"</p>
-                    </div>
-                `).join('');
-            }
-        }
-    }
-
-    function handleLogout() {
-        localStorage.removeItem('poteau_current_user');
-        window.location.href = 'login.html';
-    }
-
-    function handleResetAll() {
-        if (confirm("Attention : Cela va supprimer TOUTES les données (utilisateurs, avis, session). Continuer ?")) {
-            localStorage.clear();
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('fivender_current_user'));
+        if (!currentUser && !window.location.href.includes('login.html')) {
             window.location.href = 'login.html';
         }
-    }
+    </script>
 
-    window.onload = loadPlayerData;
-</script>
-</body></html>
+    <div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light flex flex-col pb-24 shadow-2xl">
+        <!-- Top Navigation Bar -->
+        <div
+            class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-slate-100">
+            <button onclick="history.back()"
+                class="flex size-10 shrink-0 items-center justify-center bg-slate-100 rounded-full transition-colors active:scale-90">
+                <span class="material-symbols-outlined text-slate-900">arrow_back</span>
+            </button>
+            <h2 class="text-slate-900 text-lg font-black leading-tight tracking-tight flex-1 text-center italic">PROFIL
+            </h2>
+            <div class="flex size-10 items-center justify-center bg-slate-100 rounded-full">
+                <span class="material-symbols-outlined text-slate-900">more_horiz</span>
+            </div>
+        </div>
+
+        <!-- Profile Header Section -->
+        <div class="px-6 py-8">
+            <div class="flex flex-col items-center text-center gap-4">
+                <div class="relative">
+                    <div class="flex h-32 w-32 items-center justify-center rounded-[2.5rem] bg-slate-900 text-primary text-4xl font-black shadow-2xl rotate-3"
+                        id="user-initials">
+                        --
+                    </div>
+                    <!-- Premium Badge -->
+                    <div
+                        class="absolute -bottom-2 -right-2 bg-primary text-black px-3 py-1 rounded-full text-[10px] font-black shadow-lg shadow-primary/30 uppercase tracking-widest border-2 border-background-light">
+                        Premium
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <h1 id="profile-name" class="text-3xl font-black text-slate-900 italic tracking-tighter">
+                        Chargement...</h1>
+                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">Joueur de Five • Paris
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats & Form Table -->
+        <div class="px-6 space-y-6">
+            <!-- Ratings Section -->
+            <div class="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-xl shadow-slate-200/50 space-y-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Note
+                            Globale</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span id="rating-value" class="text-3xl font-black text-slate-900">0.0</span>
+                            <span class="material-symbols-outlined text-primary fill-1">star</span>
+                        </div>
+                    </div>
+                    <div id="self-actions" class="hidden">
+                        <button
+                            class="bg-slate-100 text-slate-900 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider active:scale-95 transition-transform">Éditer</button>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Forme Récente (SofaScore
+                        Style)</p>
+                    <div class="flex gap-2">
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="size-10 rounded-xl bg-primary flex items-center justify-center text-black text-xs font-black shadow-lg shadow-primary/20 transition-transform hover:scale-110">
+                                8.4</div>
+                            <span class="text-[8px] font-black text-slate-400 uppercase">12 Oct.</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="size-10 rounded-xl bg-primary opacity-80 flex items-center justify-center text-black text-xs font-black">
+                                8.1</div>
+                            <span class="text-[8px] font-black text-slate-400 uppercase">08 Oct.</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="size-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 text-xs font-black">
+                                --</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons (Conditional) -->
+            <div id="other-actions" class="grid grid-cols-2 gap-3">
+                <button
+                    class="flex items-center justify-center gap-2 py-4 bg-primary rounded-2xl font-black text-black shadow-xl shadow-primary/20 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined font-black">person_add</span>
+                    AJOUTER
+                </button>
+                <button
+                    class="flex items-center justify-center gap-2 py-4 bg-slate-900 rounded-2xl font-black text-white shadow-xl shadow-slate-900/10 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">chat_bubble</span>
+                    MESSAGE
+                </button>
+            </div>
+
+            <!-- Reviews container -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-black text-slate-900 italic uppercase ml-2 tracking-tighter">Derniers Avis</h3>
+                <div id="reviews-container" class="space-y-3">
+                    <p
+                        class="text-xs text-slate-400 italic text-center py-6 bg-white rounded-3xl border border-slate-50">
+                        Aucun avis reçu pour le moment.</p>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="pt-6 space-y-3">
+                <button onclick="handleLogout()"
+                    class="w-full py-4 text-red-500 font-black uppercase text-xs tracking-widest border-2 border-red-500/10 rounded-2xl hover:bg-red-500/5 active:scale-95 transition-all">
+                    Se Déconnecter
+                </button>
+                <button onclick="handleResetAll()"
+                    class="w-full py-2 text-slate-300 font-bold uppercase text-[8px] tracking-[0.2em] hover:text-red-400 transition-colors">
+                    Réinitialiser les données
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav
+            class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-background-light border-t border-slate-200 px-6 py-3 flex justify-between items-center z-50">
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="index.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Home</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="dashboard.html">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Matchs</span>
+            </a>
+            <div class="relative -top-8">
+                <a href="create_match.html"
+                    class="w-14 h-14 bg-primary text-black rounded-full shadow-xl shadow-primary/40 flex items-center justify-center border-4 border-background-light transform transition-transform active:scale-90">
+                    <span class="material-symbols-outlined text-2xl font-black">add</span>
+                </a>
+            </div>
+            <a class="flex flex-col items-center gap-1 text-slate-400" href="alert.html">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Alertes</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-primary" href="profile.html">
+                <span class="material-symbols-outlined fill-1">person</span>
+                <span class="text-[10px] font-extrabold uppercase tracking-tighter">Profil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function loadPlayerData() {
+            if (!currentUser) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const nameParam = urlParams.get('name');
+
+            let profileUser = currentUser;
+            const nameDisplay = document.getElementById('profile-name');
+            const initialsDisplay = document.getElementById('user-initials');
+
+            if (nameParam && nameParam !== currentUser.name) {
+                nameDisplay.innerText = nameParam.toUpperCase();
+                initialsDisplay.innerText = nameParam.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.getElementById('self-actions').classList.add('hidden');
+                document.getElementById('other-actions').classList.remove('hidden');
+                profileUser = { name: nameParam };
+            } else {
+                nameDisplay.innerText = currentUser.name.toUpperCase();
+                initialsDisplay.innerText = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.getElementById('self-actions').classList.remove('hidden');
+                document.getElementById('other-actions').classList.add('hidden');
+            }
+
+            const playerName = nameDisplay.innerText.trim();
+            const allReviews = JSON.parse(localStorage.getItem('fivender_reviews') || '{}');
+            const playerData = allReviews[playerName];
+
+            if (playerData) {
+                if (playerData.ratings.length > 0) {
+                    const avg = playerData.ratings.reduce((a, b) => a + b, 0) / playerData.ratings.length;
+                    document.getElementById('rating-value').innerText = avg.toFixed(1);
+                }
+
+                if (playerData.comments.length > 0) {
+                    const container = document.getElementById('reviews-container');
+                    container.innerHTML = playerData.comments.reverse().map(comment => `
+                    <div class="p-5 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-black text-primary uppercase tracking-widest">De ${comment.author}</span>
+                            <span class="text-[8px] font-bold text-slate-400 font-mono">${comment.date}</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed font-medium italic">"${comment.text}"</p>
+                    </div>
+                `).join('');
+                }
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('fivender_current_user');
+            window.location.href = 'login.html';
+        }
+
+        function handleResetAll() {
+            if (confirm("Attention : Cela va supprimer TOUTES les données (utilisateurs, avis, session). Continuer ?")) {
+                localStorage.clear();
+                window.location.href = 'login.html';
+            }
+        }
+
+        window.onload = loadPlayerData;
+    </script>
+</body>
+
+</html>

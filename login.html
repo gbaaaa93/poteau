@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poteau - Bienvenue</title>
+    <title>Fivender - Bienvenue</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
             <div class="size-16 bg-primary rounded-2xl flex items-center justify-center shadow-xl shadow-primary/20 mb-4">
                 <span class="material-symbols-outlined text-black text-4xl font-bold">sports_soccer</span>
             </div>
-            <h1 class="text-3xl font-black tracking-tight uppercase italic">Poteau</h1>
+            <h1 class="text-3xl font-black tracking-tight uppercase italic">Fivender</h1>
             <p class="text-slate-400 text-sm font-medium mt-1">La communauté Padel & Five</p>
         </div>
 
@@ -156,7 +156,7 @@
                 return;
             }
 
-            const users = JSON.parse(localStorage.getItem('poteau_users') || '[]');
+            const users = JSON.parse(localStorage.getItem('fivender_users') || '[]');
             if (users.find(u => u.email === email)) {
                 showToast("Cet email est déjà utilisé");
                 return;
@@ -173,7 +173,7 @@
             };
 
             users.push(newUser);
-            localStorage.setItem('poteau_users', JSON.stringify(users));
+            localStorage.setItem('fivender_users', JSON.stringify(users));
             showToast("Compte créé avec succès ! Connecte-toi.");
             toggleAuth(true);
         }
@@ -182,11 +182,11 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            const users = JSON.parse(localStorage.getItem('poteau_users') || '[]');
+            const users = JSON.parse(localStorage.getItem('fivender_users') || '[]');
             const user = users.find(u => u.email === email && u.password === password);
 
             if (user) {
-                localStorage.setItem('poteau_current_user', JSON.stringify(user));
+                localStorage.setItem('fivender_current_user', JSON.stringify(user));
                 window.location.href = 'index.html';
             } else {
                 showToast("Identifiants incorrects");
@@ -198,11 +198,11 @@
             const mockUser = {
                 id: Date.now(),
                 name: provider === "Apple" ? "Utilisateur Apple" : "Utilisateur Google",
-                email: `${provider.toLowerCase()}@poteau.app`,
+                email: `${provider.toLowerCase()}@fivender.app`,
                 level: "Intermédiaire",
                 img: provider === "Apple" ? "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=200&h=200" : "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=200&h=200"
             };
-            localStorage.setItem('poteau_current_user', JSON.stringify(mockUser));
+            localStorage.setItem('fivender_current_user', JSON.stringify(mockUser));
             setTimeout(() => { window.location.href = 'index.html'; }, 1000);
         }
 

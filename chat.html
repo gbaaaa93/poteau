@@ -1,163 +1,161 @@
-<html class="dark"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "primary": "#0df233",
-            "background-light": "#f5f8f6",
-            "background-dark": "#102213",
+            "primary": "#94FB2D",
+            "background-light": "#F8FAFC",
           },
           fontFamily: {
-            "display": ["Lexend"]
+            "display": ["Outfit", "sans-serif"]
           },
-          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
         },
       },
     }
   </script>
-<style>
+  <style>
     body {
-      font-family: 'Lexend', sans-serif;
+      font-family: 'Outfit', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
-    .scrollbar-hide::-webkit-scrollbar {
+
+    .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
-<div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light dark:bg-background-dark flex flex-col pb-24 shadow-2xl">
-<div class="relative flex flex-col h-screen max-w-full mx-auto overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
-<!-- Header -->
-<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-slate-200 dark:border-primary/10">
-<div class="flex items-center p-4 gap-3">
-<button onclick="history.back()" class="p-1 hover:bg-primary/10 rounded-full transition-colors inline-flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
-</button>
-<div class="flex-1 flex items-center gap-3">
-<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 overflow-hidden">
-<span class="material-symbols-outlined text-primary text-2xl">sports_soccer</span>
-</div>
-<div class="flex flex-col">
-<h1 class="text-sm font-bold leading-none mb-1">Football 5v5 - Stade Charlety</h1>
-<div class="flex items-center gap-1.5">
-<span class="size-2 rounded-full bg-primary animate-pulse"></span>
-<p class="text-xs text-primary/80 font-medium">9 joueurs en ligne</p>
-</div>
-</div>
-</div>
-<button class="p-1 hover:bg-primary/10 rounded-full transition-colors">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">more_vert</span>
-</button>
-</div>
-</header>
-<!-- Pinned Banner -->
-<div class="px-4 py-3 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-primary/5">
-<div class="flex items-start gap-3 rounded-xl bg-slate-100 dark:bg-primary/10 p-3 border border-slate-200 dark:border-primary/20">
-<span class="material-symbols-outlined text-primary pt-0.5">location_on</span>
-<div class="flex-1">
-<p class="text-[13px] font-semibold text-slate-900 dark:text-slate-100 leading-snug">Rendez-vous à l'entrée principale — Porte B</p>
-<div class="flex items-center justify-between mt-1">
-<p class="text-[11px] text-slate-500 dark:text-primary/60">Pinned by Organizer</p>
-<button class="text-[11px] font-bold text-primary uppercase tracking-wider">Voir Plan</button>
-</div>
-</div>
-<div class="size-12 rounded-lg bg-cover bg-center shrink-0 border border-slate-300 dark:border-primary/30" data-alt="Map satellite view of Stade Charlety" data-location="Paris" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAzh10w1MgvCZfL1TuDA__8qD8zppK6ylbouyGLHEsjISJ2NVVkz9ZlcSH1MPxsuAODuZui0EGcyjWRhn7pAg6jIm0yS_aWPW_ditVAIbATMD1d8FGY2C90nh8BkfmakYbCDB11h8HgrCvRQafsbzLi0MGO1gqQXqo303NIfN3lTkql_X0zjMxpJxArgZSCePy1DKAEVOOB_uvthfBSIGYe82Krkhetg6bm5YgA5q2e_E-INYLOMYwPayJ1aFGgGkQgMC3cEGeEg')"></div>
-</div>
-</div>
-<!-- Chat Area -->
-<main class="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-hide">
-<!-- System Message -->
-<div class="flex justify-center">
-<span class="text-[10px] font-bold px-3 py-1 rounded-full bg-slate-200 dark:bg-primary/5 text-slate-500 dark:text-primary/40 uppercase tracking-widest">Aujourd'hui</span>
-</div>
-<!-- Incoming Message 1 -->
-<div class="flex items-end gap-2 group">
-<div class="size-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Avatar of player named Lucas" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB15wfEfyZhDltBfBMwb6swqk3pdkR99t0X-u9XWP27L0R-pbwBU8oH9T0qKhShE5iAetgaNp8Eepi3ODl7y8hqt6LqpDfDMw809H3f5WfxUbbFGhsnUdLaCT4DhZy5ZTbxc4s-HG2ooWZ3M3q_4X-4aL-ArcD3dRWAYOdgDUtQ8Y0scuN28omZ9-a_B-8nXxLiJxVKLOFBSH0qUNWIU66x6Wp5uRyBpkYIsSdHfrEYx6k9SPYimxfb-uoh4_mRBpgyCNpitkegdA')"></div>
-<div class="flex flex-col gap-1 max-w-[75%]">
-<p class="text-[11px] font-medium text-slate-500 dark:text-primary/60 ml-1">Lucas • 14:02</p>
-<div class="bg-slate-200 dark:bg-slate-800/80 rounded-2xl rounded-bl-none px-4 py-2.5 shadow-sm">
-<p class="text-[14px] leading-relaxed">Quelqu'un peut ramener un ballon ?</p>
-</div>
-</div>
-</div>
-<!-- Outgoing Message 1 -->
-<div class="flex items-end justify-end gap-2 group">
-<div class="flex flex-col gap-1 max-w-[75%] items-end">
-<p class="text-[11px] font-medium text-slate-500 dark:text-primary/60 mr-1">Moi • 14:05</p>
-<div class="bg-primary rounded-2xl rounded-br-none px-4 py-2.5 shadow-lg shadow-primary/10">
-<p class="text-[14px] leading-relaxed text-background-dark font-medium">Oui je l'amène !</p>
-</div>
-</div>
-<div class="size-8 rounded-full bg-cover bg-center mb-1 shrink-0 border-2 border-primary" data-alt="Your profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5qERRBiWsC9Wp9c3wMJ0i4ANQRCK0MX7GEIIX3JZz0jKXQx0ltUxnLhqZkWq1SYkh7mL4eIZd5byVY1ytf4vQRVA8zVjaru9HBUjWXidvNG26R8cLc4i1DDQrRRAw28IeBjewVHiT3StTiXIVZR03l4Il5UjB8GQN2VNiuxPAZVpqy45z98k7R38YzL7YVjlC2n05Bk_LoXevKoz9v2bs7UuakUtcv7HUfGRadz2jushdp-DX9fGfnsutPTO6bOA6gkOlMu3Vcw')"></div>
-</div>
-<!-- Incoming Message 2 -->
-<div class="flex items-end gap-2 group">
-<div class="size-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Avatar of player named Marc" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_dACtNCXKs9HcXbIfvGGMD-NzWRYUSboImfjzZxICdSQ0gtEut0Y5WBSpirQzxd_aOev2zD_tHkiMKVhgIeoFiptht0s6ufIglK9J3p2uPutqLegw3ymLY9TVO21DxbGmBOYbcZJhdFWg0K_5wkWe4a6-fLII2rUvhHHald_CpZ9JR-DUzqM91b7MURm5zH_L-2L-ptCXLrYOGqf0w_VEjcLObz4gRcyGkAIkxKhH4G7C6bhUIJrEa3MlHGumDfEXmRcJZm1adQ')"></div>
-<div class="flex flex-col gap-1 max-w-[75%]">
-<p class="text-[11px] font-medium text-slate-500 dark:text-primary/60 ml-1">Marc • 14:06</p>
-<div class="bg-slate-200 dark:bg-slate-800/80 rounded-2xl rounded-bl-none px-4 py-2.5 shadow-sm">
-<p class="text-[14px] leading-relaxed">Top ! À tout à l'heure !</p>
-</div>
-<!-- Add Friend Suggestion -->
-<div class="mt-2 flex items-center justify-between gap-3 bg-slate-100 dark:bg-primary/5 rounded-xl p-2 border border-slate-200 dark:border-primary/10">
-<div class="flex -space-x-2">
-<div class="size-6 rounded-full border-2 border-background-dark bg-cover" data-alt="Small avatar of player 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7Y6VN8MfaLU64vyb0kg2IDq3QKJ7ye2WCWZ1RSPbwfaaL5f8Scz_ozG8d-qZZxJvnNHUmHi3b1QSo4tMKiDHOYd_WsuuyWoLicYjBOrlTTeV72AM7MM93K6va2jLWTk13QsYtYgvOQvqT63xj0uuYQ_tyd9DM5sBVDhSCe7wbD07pOc93Gmcj4yYd2cKepvdnSnM5BFHPxWx4h8m2kTS7PabZSlnvDt4881w0-hjTv81TurkcO1r3-08mksHq94CWnD2cskIZ1Q')"></div>
-<div class="size-6 rounded-full border-2 border-background-dark bg-cover" data-alt="Small avatar of player 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaPOIeCioxgUQDAZdp4t48DNvQzSqKWR4soS0BnjDpPnmNGUnLiGXwvYj00JP7SQEgaovFIHUnMQuXQKEaA_h3-e6G5bqaiaoVn6RaKWH5u0kVQtgPTCb9dQwNmY3QT5W_kE10Cuw0OHPLQsEJT3-HFlLGEw3rLCsa4KoRODxG9kNP6ah7LiDHiew48UwlOm-UiOhK0btxyr8I_Qweje0xxdFxEuiNGkBPIDnUnc92yXr5lLWvPzvUi6xswYjs5rUNyL5EXExPqA')"></div>
-</div>
-<p class="text-[10px] font-semibold text-slate-600 dark:text-primary/60">Ajouter Marc en ami ?</p>
-<button class="size-6 rounded-full bg-primary flex items-center justify-center shadow-md">
-<span class="material-symbols-outlined text-[14px] text-background-dark font-bold">add</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Incoming Message 3 -->
-<div class="flex items-end gap-2 group">
-<div class="size-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Avatar of player named Thomas" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6-jTnU-bgBbRwxyr89pQTW1mTHyOamMFaOb_jroAg13gD3bp9za9rq5Ilyn7rnL1QkWpSO8OdJKP37IOxv_ETrFGH5wvEvRc06i0tdPAmWU9lLjlTyagitdxCAKXg3KFRNdyuQ4uW380LNY1f7t9k8Dk5ralMbR-NywxouSSoNgWX6U6OV7SMp2yVyqCVn5UQT7EeD4_KIOnCZ7T-wD-I5S4VJ6pn-FkjRFuo4yz_LC2hfyBHYliq6e8hHxAP-0lNUjs7Y2vPEA')"></div>
-<div class="flex flex-col gap-1 max-w-[75%]">
-<p class="text-[11px] font-medium text-slate-500 dark:text-primary/60 ml-1">Thomas • 14:15</p>
-<div class="bg-slate-200 dark:bg-slate-800/80 rounded-2xl rounded-bl-none px-4 py-2.5 shadow-sm">
-<p class="text-[14px] leading-relaxed">Quelqu'un sait où se garer ?</p>
-</div>
-</div>
-</div>
-</main>
-<!-- Input Bar -->
-<footer class="p-4 bg-background-light dark:bg-background-dark/95 backdrop-blur-md border-t border-slate-200 dark:border-primary/10">
-<div class="flex items-center gap-2">
-<div class="flex-1 flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-1.5 border border-slate-200 dark:border-slate-700 focus-within:border-primary transition-colors">
-<button class="p-1 text-slate-500 dark:text-primary/40 hover:text-primary">
-<span class="material-symbols-outlined text-[22px]">sentiment_satisfied</span>
-</button>
-<input class="bg-transparent border-none focus:ring-0 text-sm w-full py-2 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100" placeholder="Message..." type="text"/>
-<button class="p-1 text-slate-500 dark:text-primary/40 hover:text-primary">
-<span class="material-symbols-outlined text-[22px]">attach_file</span>
-</button>
-</div>
-<button class="size-11 rounded-full bg-primary flex items-center justify-center text-background-dark shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-transform">
-<span class="material-symbols-outlined font-bold">send</span>
-</button>
-</div>
-<!-- Home Indicator (iOS Style) -->
-<div class="mt-4 flex justify-center">
-<div class="w-32 h-1 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
-</div>
-</footer>
-</div>
+</head>
 
-```
-</div>
-</body></html>
+<body class="bg-background-light text-slate-900 antialiased overflow-x-hidden">
+  <div class="relative mx-auto h-screen max-w-[480px] bg-background-light flex flex-col shadow-2xl overflow-hidden">
+
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md px-4 py-4 border-b border-slate-100 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button onclick="history.back()"
+          class="flex size-10 items-center justify-center bg-slate-100 rounded-full transition-colors active:scale-95">
+          <span class="material-symbols-outlined text-slate-900">arrow_back</span>
+        </button>
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+            <span class="material-symbols-outlined text-primary text-xl">sports_soccer</span>
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-sm font-black italic uppercase tracking-tighter leading-none mb-1">Stade Charlety</h1>
+            <div class="flex items-center gap-1.5 leading-none">
+              <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+              <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">9 Joueurs actifs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="size-10 flex items-center justify-center bg-slate-100 rounded-full">
+        <span class="material-symbols-outlined text-slate-900">more_vert</span>
+      </button>
+    </header>
+
+    <!-- Pinned Alert bar -->
+    <div class="px-4 py-3 bg-white border-b border-slate-100">
+      <div class="bg-slate-50 border border-slate-100 rounded-2xl p-3 flex items-center gap-3">
+        <div class="size-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined text-black text-sm">location_on</span>
+        </div>
+        <div class="flex-1">
+          <p class="text-[11px] font-black text-slate-900 italic leading-snug">Rdv Porte B — Entrée principale</p>
+          <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Épinglé par l'organisateur</p>
+        </div>
+        <button
+          class="text-[10px] font-black text-primary uppercase tracking-widest px-3 py-1 bg-white rounded-lg border border-primary/10">Plan</button>
+      </div>
+    </div>
+
+    <!-- Chat Area -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar">
+      <!-- Date separator -->
+      <div class="flex justify-center">
+        <span
+          class="text-[9px] font-black px-4 py-1 rounded-full bg-slate-100 text-slate-400 uppercase tracking-widest">Aujourd'hui</span>
+      </div>
+
+      <!-- Incoming msg -->
+      <div class="flex items-end gap-3 max-w-[85%]">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB15wfEfyZhDltBfBMwb6swqk3pdkR99t0X-u9XWP27L0R-pbwBU8oH9T0qKhShE5iAetgaNp8Eepi3ODl7y8hqt6LqpDfDMw809H3f5WfxUbbFGhsnUdLaCT4DhZy5ZTbxc4s-HG2ooWZ3M3q_4X-4aL-ArcD3dRWAYOdgDUtQ8Y0scuN28omZ9-a_B-8nXxLiJxVKLOFBSH0qUNWIU66x6Wp5uRyBpkYIsSdHfrEYx6k9SPYimxfb-uoh4_mRBpgyCNpitkegdA"
+          class="size-8 rounded-xl object-cover">
+        <div class="space-y-1">
+          <p class="text-[10px] font-black text-slate-400 ml-1">LUCAS • 14:02</p>
+          <div class="bg-white border border-slate-100 p-4 rounded-3xl rounded-bl-none shadow-sm">
+            <p class="text-xs font-semibold text-slate-900 leading-relaxed">Quelqu'un peut ramener un ballon ? ⚽</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outgoing msg -->
+      <div class="flex items-end justify-end gap-3 ml-auto max-w-[85%]">
+        <div class="space-y-1 text-right">
+          <p class="text-[10px] font-black text-slate-400 mr-1">MOI • 14:05</p>
+          <div class="bg-primary p-4 rounded-3xl rounded-br-none shadow-xl shadow-primary/10">
+            <p class="text-xs font-black italic text-black leading-relaxed">Pas de souci, j'en ai un ! 💪</p>
+          </div>
+        </div>
+        <div
+          class="size-8 rounded-xl bg-slate-900 flex items-center justify-center text-[10px] font-black text-primary border-2 border-primary">
+          MOI</div>
+      </div>
+
+      <!-- Suggestion bubble -->
+      <div class="px-4">
+        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <div class="flex -space-x-2">
+              <div class="size-6 rounded-full border-2 border-white bg-slate-200"></div>
+              <div class="size-6 rounded-full border-2 border-white bg-slate-300"></div>
+            </div>
+            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Ajouter Marc en ami ?</p>
+          </div>
+          <button
+            class="bg-primary text-black px-3 py-1.5 rounded-xl font-black text-[9px] uppercase shadow-sm">Ajouter</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Input Bar -->
+    <footer class="p-6 bg-white border-t border-slate-100">
+      <div class="flex items-center gap-3">
+        <div
+          class="flex-1 flex items-center bg-slate-50 border border-slate-100 rounded-2xl px-4 py-2 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+          <span class="material-symbols-outlined text-slate-400 text-xl mr-2">sentiment_satisfied</span>
+          <input type="text" placeholder="Ton message..."
+            class="flex-1 bg-transparent border-none focus:ring-0 text-sm font-medium text-slate-900 placeholder:text-slate-300">
+          <span class="material-symbols-outlined text-slate-400 text-xl ml-2">attach_file</span>
+        </div>
+        <button
+          class="size-12 rounded-full bg-slate-900 flex items-center justify-center text-primary shadow-xl shadow-slate-900/10 active:scale-90 transition-transform">
+          <span class="material-symbols-outlined font-black">send</span>
+        </button>
+      </div>
+      <!-- iOS Indicator -->
+      <div class="mt-6 flex justify-center">
+        <div class="w-32 h-1 bg-slate-100 rounded-full"></div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
