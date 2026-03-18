@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#94FB2D",
+                        "background-light": "#F8FAFC",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #94FB2D;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #0F172A;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-slate-900 antialiased overflow-x-hidden">
+    <div class="relative mx-auto min-h-screen max-w-[480px] bg-background-light flex flex-col shadow-2xl">
+
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md px-4 py-4 border-b border-slate-100 flex items-center justify-between">
+            <button onclick="history.back()"
+                class="flex size-10 items-center justify-center bg-slate-100 rounded-full transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-slate-900">arrow_back</span>
+            </button>
+            <h2 class="text-slate-900 text-lg font-black italic uppercase tracking-tighter flex-1 text-center">Alertes Premium</h2>
+            <div class="size-10 flex items-center justify-center bg-primary/10 rounded-full border border-primary/20">
+                <span class="material-symbols-outlined text-primary">campaign</span>
+            </div>
+        </header>
+
+        <main class="flex-1 p-6 space-y-8">
+            <div class="space-y-2">
+                <h1 class="text-2xl font-black italic tracking-tighter uppercase leading-none">Ne rate aucun <span class="text-primary">match</span></h1>
+                <p class="text-slate-400 text-xs font-medium">Configure ta zone de détection et reçois une notification push dès qu'un match est créé.</p>
+            </div>
+
+            <!-- City Search -->
+            <section class="space-y-3">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ville de référence</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">location_on</span>
+                    <input type="text" id="city-input" placeholder="Ex: Stains, Paris..."
+                        class="w-full h-16 bg-white border-2 border-slate-100 rounded-2xl pl-12 pr-4 text-sm font-bold focus:border-primary focus:ring-0 transition-all shadow-sm">
+                </div>
+            </section>
+
+            <!-- Radius Slider -->
+            <section class="space-y-6 pt-4">
+                <div class="flex justify-between items-end">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Rayon de détection</label>
+                    <span id="radius-value" class="text-2xl font-black italic text-primary">10 km</span>
+                </div>
+                <input type="range" id="radius-slider" min="1" max="50" value="10"
+                    class="range-slider w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                    oninput="document.getElementById('radius-value').innerText = this.value + ' km'">
+                <div class="flex justify-between text-[8px] font-bold text-slate-300 uppercase tracking-widest">
+                    <span>1 km</span>
+                    <span>25 km</span>
+                    <span>50 km</span>
+                </div>
+            </section>
+
+            <!-- Logic Explanation (Expert Dev) -->
+            <div class="p-5 rounded-3xl bg-slate-900 text-white space-y-4 shadow-xl">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-sm">terminal</span>
+                    <h4 class="text-[10px] font-black uppercase tracking-widest">Fonctionnement Technique</h4>
+                </div>
+                <p class="text-[10px] text-slate-400 leading-relaxed font-mono">
+                    // Haversine Algorithm<br>
+                    Le système utilise la formule de Haversine pour calculer la distance orthodromique entre le match (lat2, lon2) et votre zone (lat1, lon1).<br><br>
+                    Si distance <= <span class="text-primary">rayon_choisi</span>, un webhook déclenche l'API Firebase Cloud Messaging pour vous envoyer une push notification instantanée.
+                </p>
+            </div>
+        </main>
+
+        <div class="p-6">
+            <button onclick="saveSettings()"
+                class="w-full h-16 bg-primary text-black rounded-[2rem] font-black uppercase italic tracking-widest text-sm shadow-xl shadow-primary/20 active:scale-95 transition-all">
+                Activer les alertes
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Fake mapping because we don't have a real Geocoding API in this static demo
+        const cityCoords = {
+            "stains": { lat: 48.9500, lng: 2.3833 },
+            "paris": { lat: 48.8566, lng: 2.3522 },
+            "saint-denis": { lat: 48.9356, lng: 2.3539 }
+        };
+
+        function saveSettings() {
+            const city = document.getElementById('city-input').value.toLowerCase().trim();
+            const radius = document.getElementById('radius-slider').value;
+            
+            if (!city) {
+                alert("Veuillez saisir une ville.");
+                return;
+            }
+
+            const coords = cityCoords[city] || { lat: 48.8566, lng: 2.3522 }; // Default to Paris if not found
+
+            const settings = {
+                city: city.toUpperCase(),
+                lat: coords.lat,
+                lng: coords.lng,
+                radius: parseInt(radius)
+            };
+
+            localStorage.setItem('fivender_alert_settings', JSON.stringify(settings));
+            
+            // Simulation de l'autorisation Push
+            if (Notification.permission !== 'granted') {
+                alert("Activation réussie ! (Simulation : Permissions Push accordées)");
+            }
+
+            history.back();
+        }
+
+        window.onload = () => {
+            const saved = localStorage.getItem('fivender_alert_settings');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('city-input').value = data.city;
+                document.getElementById('radius-slider').value = data.radius;
+                document.getElementById('radius-value').innerText = data.radius + ' km';
+            }
+        };
+    </script>
+</body>
+
+</html>

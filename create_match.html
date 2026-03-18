@@ -194,6 +194,47 @@
             }
         }
 
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function triggerPremiumAlerts(matchCity, matchCoords) {
+            const alertSettings = JSON.parse(localStorage.getItem('fivender_alert_settings'));
+            if (!alertSettings) return;
+
+            const distance = getDistance(
+                alertSettings.lat, alertSettings.lng,
+                matchCoords.lat, matchCoords.lng
+            );
+
+            if (distance <= alertSettings.radius) {
+                // Simulate a push notification for other users (but here shown to current user for demo)
+                setTimeout(() => {
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] bg-slate-900 text-white p-4 rounded-3xl shadow-2xl z-[100] border border-primary/20 flex items-center gap-4 animate-bounce';
+                    notification.innerHTML = `
+                        <div class="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-primary">campaign</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black text-primary uppercase tracking-widest leading-none">Alerte Premium</p>
+                            <p class="text-xs font-bold mt-1">Nouveau match à ${matchCity} !</p>
+                            <p class="text-[8px] text-slate-400 uppercase mt-0.5">Dans votre rayon de ${alertSettings.radius}km</p>
+                        </div>
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 5000);
+                }, 1000);
+            }
+        }
+
         function publishMatch() {
             const btn = document.getElementById('publish-btn');
 
@@ -201,7 +242,33 @@
             btn.disabled = true;
             btn.classList.add('opacity-80');
 
-            // Simulation d'enregistrement
+            const newMatch = {
+                id: Date.now(),
+                sport: selectedSport,
+                name: document.getElementById('match-name').value,
+                city: document.getElementById('match-city').value,
+                time: document.getElementById('match-time').value,
+                duration: document.getElementById('match-duration').value,
+                price: document.getElementById('match-price').value,
+                paymentLink: document.getElementById('match-payment-link').value,
+                creator: currentUser.id,
+                players: [currentUser.id]
+            };
+
+            const matches = JSON.parse(localStorage.getItem('fivender_matches') || '[]');
+            matches.push(newMatch);
+            localStorage.setItem('fivender_matches', JSON.stringify(matches));
+
+            // Trigger Premium Alerts
+            const cityCoords = {
+                "stains": { lat: 48.9500, lng: 2.3833 },
+                "paris": { lat: 48.8566, lng: 2.3522 },
+                "saint-denis": { lat: 48.9356, lng: 2.3539 }
+            };
+            const matchCity = document.getElementById('match-city').value.toLowerCase(); // Changed from city-input to match-city
+            const coords = cityCoords[matchCity] || { lat: 48.8566, lng: 2.3522 };
+            triggerPremiumAlerts(document.getElementById('match-city').value, coords); // Changed from city-input to match-city
+
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
             }, 1500);
