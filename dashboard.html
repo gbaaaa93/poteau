@@ -109,7 +109,7 @@
         if (!currentUser) window.location.href = 'login.html';
 
         // Mock logic: New users see empty, old users see history
-        const isNewUser = !currentUser.email.includes('test'); // Simple heuristic for now
+        const isNewUser = true; // Forcing clean state for now until real storage is linked
 
         function switchDashboardTab(tab) {
             const area = document.getElementById('content-area');
@@ -154,25 +154,11 @@
                 tabPast.classList.remove('border-primary', 'text-slate-900');
 
                 area.innerHTML = `
-                <section class="space-y-4">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Prochainement</h2>
-                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg p-5 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <span class="bg-primary/20 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Confirmé ✓</span>
-                                <h3 class="text-lg font-bold mt-2">Padel 2v2 • Demain 18h</h3>
-                                <p class="text-sm text-slate-500">Padel Horizon, Fontenay</p>
-                            </div>
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary">sports_tennis</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between pt-2 border-t border-slate-50">
-                            <span class="text-sm font-bold text-primary">Chat du match</span>
-                            <button class="bg-primary text-black px-4 py-2 rounded-xl text-sm font-bold">Détails</button>
-                        </div>
-                    </div>
-                </section>
+                <div class="flex flex-col items-center justify-center py-20 text-center space-y-4">
+                    <span class="material-symbols-outlined text-6xl text-slate-200">calendar_today</span>
+                    <p class="text-slate-500 font-medium">Aucun match à venir.</p>
+                    <a href="index.html" class="bg-primary text-black px-6 py-2 rounded-xl text-sm font-bold uppercase">Trouver un match</a>
+                </div>
             `;
             }
         }
